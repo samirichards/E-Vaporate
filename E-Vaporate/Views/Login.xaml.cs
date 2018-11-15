@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace E_Vaporate.Views
@@ -17,11 +18,16 @@ namespace E_Vaporate.Views
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : MahApps.Metro.Controls.MetroWindow
+    public partial class Login : Page
     {
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void Btn_SignUp_Click(object sender, RoutedEventArgs e)
+        {
+            WindowTitle = "Register";
         }
     }
 }

@@ -10,18 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace E_Vaporate.Views
+namespace E_Vaporate
 {
     /// <summary>
-    /// Interaction logic for Register.xaml
+    /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class Register : Window
+    public partial class Register : Page
     {
         public Register()
         {
-            InitializeComponent();
+            WindowTitle = "Register";
+        }
+
+        private void Btn_BackToLogin_Clicked(EventArgs e, object sender)
+        {
+            MessageBox.Show("Thingy");
         }
     }
 }

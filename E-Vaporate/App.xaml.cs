@@ -15,8 +15,8 @@ namespace E_Vaporate
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var login = new Views.Login();
-            login.Show();
+            var accountView = new Views.AccountVerification();
+            accountView.Show();
         }
     }
 }
