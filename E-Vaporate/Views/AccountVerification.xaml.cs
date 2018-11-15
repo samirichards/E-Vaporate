@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace E_Vaporate.Views
 {
@@ -22,6 +23,41 @@ namespace E_Vaporate.Views
         public AccountVerification()
         {
             InitializeComponent();
+        }
+
+        private void Expandy_Click(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation anim = new DoubleAnimation
+            {
+                From = 400,
+                To = 800,
+                Duration = TimeSpan.FromSeconds(0.8),
+                EasingFunction = new CubicEase()
+            };
+            BeginAnimation(WidthProperty, anim);
+        }
+
+        private void Btn_BackToLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Width = 400;
+        }
+
+        private void Closy_Click(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation anim = new DoubleAnimation
+            {
+                From = 800,
+                To = 400,
+                Duration = TimeSpan.FromSeconds(0.8),
+                EasingFunction = new CubicEase()
+            };
+            BeginAnimation(WidthProperty, anim);
+        }
+
+        private void Chk_Publisher_Checked(object sender, RoutedEventArgs e)
+        {
+            VerifyPubCode verify = new VerifyPubCode();
+            verify.Show();
         }
     }
 }

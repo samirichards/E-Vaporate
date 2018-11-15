@@ -10,24 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace E_Vaporate.Views
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for VerifyPubCode.xaml
     /// </summary>
-    public partial class Login : Page
+    public partial class VerifyPubCode : MahApps.Metro.Controls.MetroWindow
     {
-        public Login()
+        public VerifyPubCode()
         {
             InitializeComponent();
-        }
+            Prog_Publisher.Visibility = Visibility.Hidden;
+            Btn_EnterPublisherCode.Click += (s, e) =>
+            {
 
-        private void Btn_SignUp_Click(object sender, RoutedEventArgs e)
-        {
-            WindowTitle = "Register";
+            };
         }
     }
 }
