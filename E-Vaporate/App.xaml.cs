@@ -13,6 +13,8 @@ namespace E_Vaporate
     /// </summary>
     public partial class App : Application
     {
+        public static string PubCode = "";
+
         protected override void OnStartup(StartupEventArgs e)
         {
             var accountView = new Views.AccountVerification();

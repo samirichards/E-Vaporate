@@ -27,7 +27,8 @@ namespace E_Vaporate.Views
             Prog_Publisher.Visibility = Visibility.Hidden;
             Btn_EnterPublisherCode.Click += (s, e) =>
             {
-
+                if (App.PubCode == Txt_PublisherCode.Text)
+                    App.PubCode = Txt_PublisherCode.Text;
             };
         }
     }
