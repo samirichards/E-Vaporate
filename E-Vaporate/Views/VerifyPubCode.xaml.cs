@@ -24,12 +24,43 @@ namespace E_Vaporate.Views
         public VerifyPubCode()
         {
             InitializeComponent();
-            Prog_Publisher.Visibility = Visibility.Hidden;
+            GetWindow(this).Closing += (s, e) =>
+            {
+                GetWindow(this).DialogResult = CodeValid;
+            };
             Btn_EnterPublisherCode.Click += (s, e) =>
             {
-                if (App.PubCode == Txt_PublisherCode.Text)
-                    App.PubCode = Txt_PublisherCode.Text;
+                GetWindow(this).DialogResult = CodeValid;
             };
+        }
+
+        public bool CodeValid
+        {
+            get
+            {
+                SqlConnection conn = new SqlConnection
+                {
+                    ConnectionString = ConfigurationManager.ConnectionStrings["ServerDB"].ConnectionString
+                };
+                using (conn)
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand
+                    {
+                        CommandText = "SELECT Code FROM PublisherCode WHERE Code=@code"
+                    };
+                    command.Parameters.AddWithValue("Code", Txt_PublisherCode.Text);
+                    command.Connection = conn;
+                    if ((string)command.ExecuteScalar() == Txt_PublisherCode.Text)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
         }
     }
 }

@@ -20,44 +20,71 @@ namespace E_Vaporate.Views
     /// </summary>
     public partial class AccountVerification : MahApps.Metro.Controls.MetroWindow
     {
+        public bool Expanded { get; set; }
         public AccountVerification()
         {
             InitializeComponent();
-        }
-
-        private void Expandy_Click(object sender, RoutedEventArgs e)
-        {
-            DoubleAnimation anim = new DoubleAnimation
-            {
-                From = 400,
-                To = 800,
-                Duration = TimeSpan.FromSeconds(0.8),
-                EasingFunction = new CubicEase()
-            };
-            BeginAnimation(WidthProperty, anim);
-        }
-
-        private void Btn_BackToLogin_Click(object sender, RoutedEventArgs e)
-        {
-            Width = 400;
-        }
-
-        private void Closy_Click(object sender, RoutedEventArgs e)
-        {
-            DoubleAnimation anim = new DoubleAnimation
-            {
-                From = 800,
-                To = 400,
-                Duration = TimeSpan.FromSeconds(0.8),
-                EasingFunction = new CubicEase()
-            };
-            BeginAnimation(WidthProperty, anim);
+            Expanded = false;
         }
 
         private void Chk_Publisher_Checked(object sender, RoutedEventArgs e)
         {
             VerifyPubCode verify = new VerifyPubCode();
-            verify.Show();
+            if (verify.ShowDialog() == false)
+            {
+                MessageBox.Show("Publisher Code Invalid");
+                Chk_Publisher.IsChecked = false;
+            }
+        }
+
+        private void Btn_ExpandReg_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            if (Expanded == false)
+            {
+                btn.Content = "Less Options";
+
+                DoubleAnimation anim = new DoubleAnimation
+                {
+                    From = 400,
+                    To = 800,
+                    Duration = TimeSpan.FromSeconds(0.8),
+                    EasingFunction = new CubicEase()
+                };
+                BeginAnimation(WidthProperty, anim);
+                Expanded = true;
+            }
+            else
+            {
+                btn.Content = "More Options";
+
+                DoubleAnimation anim = new DoubleAnimation
+                {
+                    From = 800,
+                    To = 400,
+                    Duration = TimeSpan.FromSeconds(0.8),
+                    EasingFunction = new CubicEase()
+                };
+                BeginAnimation(WidthProperty, anim);
+                Expanded = false;
+            }
+        }
+
+        private void Btn_BackToLogin_Click(object sender, RoutedEventArgs e)
+        {
+            if (Expanded == true)
+            {
+                DoubleAnimation anim = new DoubleAnimation
+                {
+                    From = 800,
+                    To = 400,
+                    Duration = TimeSpan.FromSeconds(0.8),
+                    EasingFunction = new CubicEase()
+                };
+                BeginAnimation(WidthProperty, anim);
+                Expanded = false;
+                Btn_ExpandReg.Content = "More Options";
+            }
         }
     }
 }

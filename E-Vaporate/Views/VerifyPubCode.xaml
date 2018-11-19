@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:E_Vaporate"
         mc:Ignorable="d"
-        Title="E-Vaporate Login / Register" Height="200" Width="400"
+        Title="Verify Publisher Code" Height="200" Width="400"
         BorderThickness="0"
         ResizeBorderThickness="4"
         ShowIconOnTitleBar="False"
@@ -20,7 +20,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="CanMinimize">
+        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" ShowMinButton="False" ShowInTaskbar="False" Topmost="True">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -37,7 +37,6 @@
             <Label Content="Please enter your Publisher code" HorizontalContentAlignment="Center"/>
             <TextBox x:Name="Txt_PublisherCode" Grid.RowSpan="1" Height="24" Margin="4"/>
             <Button x:Name="Btn_EnterPublisherCode" Content="Enter" HorizontalAlignment="Center" Margin="4" Style="{DynamicResource MaterialDesignRaisedAccentButton}"/>
-            <ProgressBar x:Name="Prog_Publisher" Value="0"/>
         </StackPanel>
     </Grid>
 
