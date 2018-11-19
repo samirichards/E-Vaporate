@@ -48,7 +48,7 @@ namespace E_Vaporate.Views
                 {
                     From = 400,
                     To = 800,
-                    Duration = TimeSpan.FromSeconds(0.8),
+                    Duration = TimeSpan.FromSeconds(0.2),
                     EasingFunction = new CubicEase()
                 };
                 BeginAnimation(WidthProperty, anim);
@@ -62,7 +62,7 @@ namespace E_Vaporate.Views
                 {
                     From = 800,
                     To = 400,
-                    Duration = TimeSpan.FromSeconds(0.8),
+                    Duration = TimeSpan.FromSeconds(0.2),
                     EasingFunction = new CubicEase()
                 };
                 BeginAnimation(WidthProperty, anim);
