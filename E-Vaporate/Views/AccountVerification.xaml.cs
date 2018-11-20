@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.Data.SqlClient;
 
 namespace E_Vaporate.Views
 {
@@ -85,6 +86,44 @@ namespace E_Vaporate.Views
                 Expanded = false;
                 Btn_ExpandReg.Content = "More Options";
             }
+        }
+
+        private void Btn_Register_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateReg())
+            {
+                MessageBox.Show("Please fill in all required boxes");
+                return;
+            }
+
+            SqlConnection conn = new SqlConnection
+            {
+                ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ServerDB"].ConnectionString
+            };
+            SqlCommand comm = new SqlCommand
+            {
+                CommandText = "SELECT * FROM [User] WHERE Username=@uname",
+                Connection = conn
+            };
+
+            comm.Parameters.AddWithValue("@uname", Txt_RegUsername.Text);
+            using (conn)
+            {
+                conn.Open();
+                if (comm.ExecuteNonQuery() != -1)
+                {
+                    MessageBox.Show("That user already exists");
+                }
+            }
+        }
+
+        private bool ValidateReg()
+        {
+            if (Txt_RegUsername.Text == string.Empty || Txt_RegPassword.Password == string.Empty || Txt_RegPasswordConf.Password == string.Empty || Txt_FirstName.Text == string.Empty || Txt_LastName.Text == string.Empty || Txt_Email.Text == string.Empty)
+            {
+                return false;
+            }
+            else return true;
         }
     }
 }

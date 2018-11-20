@@ -13,12 +13,24 @@ namespace E_Vaporate
     /// </summary>
     public partial class App : Application
     {
-        public static string PubCode = "";
-
         protected override void OnStartup(StartupEventArgs e)
         {
-            var accountView = new Views.AccountVerification();
-            accountView.Show();
+            try
+            {
+                System.Data.SqlClient.SqlConnection connection = new System.Data.SqlClient.SqlConnection
+                {
+                    ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ServerDB"].ConnectionString
+                };
+                connection.Open();
+                connection.Close();
+                var accountView = new Views.AccountVerification();
+                accountView.Show();
+            }
+            catch (Exception a)
+            {
+                MessageBox.Show("Unable to connect to server" + Environment.NewLine + a.InnerException);
+                Shutdown();
+            }
         }
     }
 }

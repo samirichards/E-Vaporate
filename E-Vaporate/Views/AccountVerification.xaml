@@ -112,7 +112,7 @@
                                 </DockPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button x:Name="Btn_BackToLogin" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}" Content="Back" Style="{DynamicResource MaterialDesignFlatButton}" Margin="6" VerticalAlignment="Center" Click="Btn_BackToLogin_Click"/>
-                                    <Button x:Name="Btn_Register" Content="Register" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="6" VerticalAlignment="Center"/>
+                                    <Button x:Name="Btn_Register" Content="Register" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="6" VerticalAlignment="Center" Click="Btn_Register_Click"/>
                                 </StackPanel>
                                 <Button x:Name="Btn_ExpandReg" Content="More Options" HorizontalAlignment="Right" Click="Btn_ExpandReg_Click"/>
                             </StackPanel>
