@@ -5,9 +5,9 @@ namespace E_Vaporate.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class EvaporateModel : DbContext
+    public partial class EVaporateModel : DbContext
     {
-        public EvaporateModel()
+        public EVaporateModel()
             : base("name=ServerDB")
         {
         }
@@ -30,8 +30,10 @@ namespace E_Vaporate.Model
                 .Map(m => m.ToTable("GameOwnership").MapLeftKey("GameID").MapRightKey("UserID"));
 
             modelBuilder.Entity<Publisher>()
-                .Property(e => e.DeveloperName)
-                .IsFixedLength();
+                .HasMany(e => e.Games)
+                .WithRequired(e => e.Publisher1)
+                .HasForeignKey(e => e.Publisher)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasOptional(e => e.Publisher)

@@ -15,6 +15,7 @@ namespace E_Vaporate
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            MessageBox.Show("Change hashed password in DB to VARBINARY(MAX) (If you're at home ofc)");
             try
             {
                 System.Data.SqlClient.SqlConnection connection = new System.Data.SqlClient.SqlConnection

@@ -100,7 +100,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\EvaporateModel.cs" />
+    <Compile Include="Model\EVaporateModel.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\Publisher.cs" />
     <Compile Include="Model\User.cs" />

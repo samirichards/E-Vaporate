@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:E_Vaporate"
         mc:Ignorable="d"
-        Title="Verify Publisher Code" Height="200" Width="400"
+        Title="Verify Publisher Code" Height="160" Width="440"
         BorderThickness="0"
         ResizeBorderThickness="4"
         ShowIconOnTitleBar="False"
@@ -25,7 +25,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -35,7 +35,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
             <Label Content="Please enter your Publisher code" HorizontalContentAlignment="Center"/>
-            <TextBox x:Name="Txt_PublisherCode" Grid.RowSpan="1" Height="24" Margin="4"/>
+            <TextBox x:Name="Txt_PublisherCode" Grid.RowSpan="1" TextAlignment="Center" Height="28"/>
             <Button x:Name="Btn_EnterPublisherCode" Content="Enter" HorizontalAlignment="Center" Margin="4" Style="{DynamicResource MaterialDesignRaisedAccentButton}"/>
         </StackPanel>
     </Grid>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace E_Vaporate.Views
 {
@@ -95,24 +96,40 @@ namespace E_Vaporate.Views
                 MessageBox.Show("Please fill in all required boxes");
                 return;
             }
-
-            SqlConnection conn = new SqlConnection
+            using (var context = new Model.EVaporateModel())
             {
-                ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ServerDB"].ConnectionString
-            };
-            SqlCommand comm = new SqlCommand
-            {
-                CommandText = "SELECT * FROM [User] WHERE Username=@uname",
-                Connection = conn
-            };
-
-            comm.Parameters.AddWithValue("@uname", Txt_RegUsername.Text);
-            using (conn)
-            {
-                conn.Open();
-                if (comm.ExecuteNonQuery() != -1)
+                if (context.Users.Where(b => b.Username == Txt_RegUsername.Text).SingleOrDefault() != null)
                 {
                     MessageBox.Show("That user already exists");
+                    Txt_RegUsername.Text = string.Empty;
+                }
+                else
+                {
+                    Model.User user = new Model.User
+                    {
+                        Username = Txt_RegUsername.Text,
+                        FirstName = Txt_FirstName.Text,
+                        LastName = Txt_LastName.Text,
+                        Email = Txt_Email.Text,
+                        Postcode = Txt_Postcode.Text,
+                        AddrLine1 = Txt_AddrLine1.Text,
+                        AddrLine2 = Txt_AddrLine2.Text,
+                        AddrLine3 = Txt_AddrLine3.Text,
+                        HashedPassword = GeneratePasswordSalt(Txt_RegPassword.Password, Txt_RegUsername.Text),
+                        AccountFunds = 0
+                    };
+                    try
+                    {
+                        context.Users.Add(user);
+                        context.SaveChanges();
+                        MessageBox.Show("Successfully signed up");
+                        Txt_Username.Text = Txt_RegUsername.Text;
+                        Txt_Password.Password = Txt_RegPassword.Password;
+                    }
+                    catch (Exception b)
+                    {
+                        MessageBox.Show("Could not create an account" + Environment.NewLine + b.Message);
+                    }
                 }
             }
         }
@@ -124,6 +141,27 @@ namespace E_Vaporate.Views
                 return false;
             }
             else return true;
+        }
+
+        protected byte[] GeneratePasswordSalt(string password, string _salt)
+        {
+            byte[] plainText = password.ToCharArray().Select(c => (byte)c).ToArray();
+            byte[] salt = _salt.ToCharArray().Select(c => (byte)c).ToArray();
+            HashAlgorithm algorithm = new SHA256Managed();
+
+            byte[] plainTextWithSaltBytes =
+              new byte[plainText.Length + salt.Length];
+
+            for (int i = 0; i < plainText.Length; i++)
+            {
+                plainTextWithSaltBytes[i] = plainText[i];
+            }
+            for (int i = 0; i < salt.Length; i++)
+            {
+                plainTextWithSaltBytes[plainText.Length + i] = salt[i];
+            }
+
+            return algorithm.ComputeHash(plainTextWithSaltBytes);
         }
     }
 }
