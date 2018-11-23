@@ -91,10 +91,17 @@ namespace E_Vaporate.Views
 
         private void Btn_Register_Click(object sender, RoutedEventArgs e)
         {
-            if (!ValidateReg())
+            
+            switch (ValidateReg())
             {
-                MessageBox.Show("Please fill in all required boxes");
-                return;
+                case 2:
+                    MessageBox.Show("Passwords dont match");
+                    return;
+                case 1:
+                    MessageBox.Show("There are empty fields");
+                    return;
+                case 0:
+                    break;
             }
             using (var context = new Model.EVaporateModel())
             {
@@ -115,9 +122,18 @@ namespace E_Vaporate.Views
                         AddrLine1 = Txt_AddrLine1.Text,
                         AddrLine2 = Txt_AddrLine2.Text,
                         AddrLine3 = Txt_AddrLine3.Text,
-                        HashedPassword = GeneratePasswordSalt(Txt_RegPassword.Password, Txt_RegUsername.Text),
+                        HashedPassword = Classes.Utilities.GeneratePasswordSalt(Txt_RegPassword.Password, Txt_RegUsername.Text.ToLower()),
                         AccountFunds = 0
                     };
+                    if (Chk_Publisher.IsChecked.Value)
+                    {
+                        Model.Publisher publisher = new Model.Publisher
+                        {
+                            PublisherID = user.UserID,
+                            DeveloperName = user.Username
+                        };
+                        context.Publishers.Add(publisher);
+                    }
                     try
                     {
                         context.Users.Add(user);
@@ -134,34 +150,36 @@ namespace E_Vaporate.Views
             }
         }
 
-        private bool ValidateReg()
+        /// <summary>
+        /// Checks to see if the required fields are filled in
+        /// </summary>
+        /// <returns>Int to represent the kind of error or if it passes</returns>
+        private int ValidateReg()
         {
+            if (Txt_RegPasswordConf.Password != Txt_RegPassword.Password)
+            {
+                return 2;
+            }
             if (Txt_RegUsername.Text == string.Empty || Txt_RegPassword.Password == string.Empty || Txt_RegPasswordConf.Password == string.Empty || Txt_FirstName.Text == string.Empty || Txt_LastName.Text == string.Empty || Txt_Email.Text == string.Empty)
             {
-                return false;
+                return 1;
             }
-            else return true;
+            else return 0;
         }
 
-        protected byte[] GeneratePasswordSalt(string password, string _salt)
+        private void Btn_Login_Click(object sender, RoutedEventArgs e)
         {
-            byte[] plainText = password.ToCharArray().Select(c => (byte)c).ToArray();
-            byte[] salt = _salt.ToCharArray().Select(c => (byte)c).ToArray();
-            HashAlgorithm algorithm = new SHA256Managed();
-
-            byte[] plainTextWithSaltBytes =
-              new byte[plainText.Length + salt.Length];
-
-            for (int i = 0; i < plainText.Length; i++)
+            Model.User temp = Classes.Utilities.GetUser(Txt_Username.Text, Txt_Password.Password);
+            if (temp != null)
             {
-                plainTextWithSaltBytes[i] = plainText[i];
+                Main main = new Main(temp);
+                main.Show();
+                Hide();
             }
-            for (int i = 0; i < salt.Length; i++)
+            else
             {
-                plainTextWithSaltBytes[plainText.Length + i] = salt[i];
+                MessageBox.Show("User not found");
             }
-
-            return algorithm.ComputeHash(plainTextWithSaltBytes);
         }
     }
 }

@@ -59,7 +59,7 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft">
-                            <Button x:Name="Btn_Login" Content="Login" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="6" VerticalAlignment="Center"/>
+                            <Button x:Name="Btn_Login" Content="Login" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="6" VerticalAlignment="Center" Click="Btn_Login_Click"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
