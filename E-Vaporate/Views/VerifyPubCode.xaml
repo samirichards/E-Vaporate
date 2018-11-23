@@ -20,7 +20,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" ShowMinButton="False" ShowInTaskbar="False" Topmost="True">
+        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" ShowMinButton="False" ShowInTaskbar="False" Topmost="True" Icon="/E-Vaporate;component/Assets/logo.png">
 
     <Grid>
         <Grid.ColumnDefinitions>

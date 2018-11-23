@@ -27,7 +27,6 @@ namespace E_Vaporate.Views
         {
             LoggedInUser = _user;
             InitializeComponent();
-            MessageBox.Show(LoggedInUser.FirstName + Environment.NewLine + LoggedInUser.LastName);
         }
     }
 }

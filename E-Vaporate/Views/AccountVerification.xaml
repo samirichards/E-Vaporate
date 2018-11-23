@@ -20,7 +20,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="CanMinimize">
+        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="CanMinimize" Icon="/E-Vaporate;component/Assets/logo.png">
 
     <DockPanel>
         <materialDesign:Transitioner SelectedIndex="0">
