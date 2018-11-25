@@ -19,6 +19,10 @@ namespace E_Vaporate.Model
 
         [Required]
         [StringLength(50)]
+        public string Username { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string FirstName { get; set; }
 
         [Required]
@@ -46,9 +50,7 @@ namespace E_Vaporate.Model
         [StringLength(50)]
         public string AddrLine3 { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Username { get; set; }
+        public byte[] UserIcon { get; set; }
 
         public virtual Publisher Publisher { get; set; }
 

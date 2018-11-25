@@ -31,18 +31,49 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="6*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="Lbl_ToolbarTitle" Grid.Column="1" Grid.Row="1" Content="Test" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="24" FontWeight="DemiBold"/>
                 <TextBox x:Name="Txt_ToolbarSearch" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center" Margin="8,0,8,0"/>
+                <Image Grid.Column="2" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Center" x:Name="Img_UserIcon" Height="24" Width="24">
+                    <Image.Clip>
+                        <EllipseGeometry RadiusX="12" RadiusY="12" Center="12 12"/>
+                    </Image.Clip>
+                </Image>
             </Grid>
             <Grid x:Name="Grd_ContentArea">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="12*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="test" Background="White" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Background="{StaticResource PrimaryHueDarkBrush}">
+                    <ListView x:Name="LstView_MainNav" HorizontalContentAlignment="Stretch" Background="{StaticResource PrimaryHueDarkBrush}" SelectionChanged="LstView_MainNav_SelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <materialDesign:Ripple HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
+                                <Grid Height="52">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="10*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="10*"/>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+                                        <Label Grid.Column="1" FontSize="18" FontWeight="DemiBold" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" x:Name="Lbl_Text" Content="{Binding ButtonText}"/>
+                                    </Grid>
+                                </materialDesign:Ripple>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    </StackPanel>
+                </ScrollViewer>
+                <materialDesign:Transitioner x:Name="Frm_contentArea">
+                </materialDesign:Transitioner>
             </Grid>
         </DockPanel>
 

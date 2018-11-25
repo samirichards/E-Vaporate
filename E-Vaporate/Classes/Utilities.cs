@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace E_Vaporate.Classes
 {
@@ -68,6 +70,18 @@ namespace E_Vaporate.Classes
                 {
                     return null;
                 }
+            }
+        }
+
+        public static bool IsPublisher(Model.User user)
+        {
+            using (var context = new Model.EVaporateModel())
+            {
+                if (context.Publishers.Where(p => p.PublisherID == user.UserID).FirstOrDefault() != null)
+                {
+                    return true;
+                }
+                else return false;
             }
         }
     }

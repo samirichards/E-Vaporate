@@ -30,10 +30,8 @@ namespace E_Vaporate.Model
                 .Map(m => m.ToTable("GameOwnership").MapLeftKey("GameID").MapRightKey("UserID"));
 
             modelBuilder.Entity<Publisher>()
-                .HasMany(e => e.Games)
-                .WithRequired(e => e.Publisher1)
-                .HasForeignKey(e => e.Publisher)
-                .WillCascadeOnDelete(false);
+                .Property(e => e.DeveloperName)
+                .IsFixedLength();
 
             modelBuilder.Entity<User>()
                 .HasOptional(e => e.Publisher)

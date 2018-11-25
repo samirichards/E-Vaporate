@@ -27,6 +27,46 @@ namespace E_Vaporate.Views
         {
             LoggedInUser = _user;
             InitializeComponent();
+
+            List<NavMenuButton> MainNavList = new List<NavMenuButton>
+            {
+                new NavMenuButton { ButtonText = "Store", LinkedPage = new Pages.Store() },
+                new NavMenuButton { ButtonText = "Library", LinkedPage = new Pages.Library() },
+                new NavMenuButton { ButtonText = "Account", LinkedPage = new Pages.Account() },
+                new NavMenuButton { ButtonText = "Settings", LinkedPage = new Pages.Settings() }
+            };
+            using (var context = new Model.EVaporateModel())
+            {
+                if (Classes.Utilities.IsPublisher(LoggedInUser))
+                {
+                    MainNavList.Add(new NavMenuButton { ButtonText = "Publisher", LinkedPage = new Pages.PublisherPage() });
+                }
+            }
+            LstView_MainNav.ItemsSource = MainNavList;
+
+            List<Page> pages = new List<Page>()
+            {
+                new Pages.Store(),
+                new Pages.Library(),
+                new Pages.Account(),
+                new Pages.Settings(),
+                new Pages.PublisherPage()
+            };
+
+            Frm_contentArea.ItemsSource = pages;
         }
+
+        private void LstView_MainNav_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            NavMenuButton menuButton = (NavMenuButton)LstView_MainNav.SelectedItem;
+            Frm_contentArea.SelectedIndex = LstView_MainNav.SelectedIndex;
+            Lbl_ToolbarTitle.Content = menuButton.ButtonText;
+        }
+    }
+
+    public class NavMenuButton
+    {
+        public string ButtonText { get; set; }
+        public Page LinkedPage { get; set; }
     }
 }
