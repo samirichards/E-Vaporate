@@ -53,13 +53,13 @@ namespace E_Vaporate.Views
                 new Pages.PublisherPage()
             };
 
-            Frm_contentArea.ItemsSource = pages;
+            LstView_MainNav.SelectedIndex = 0;
         }
 
         private void LstView_MainNav_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             NavMenuButton menuButton = (NavMenuButton)LstView_MainNav.SelectedItem;
-            Frm_contentArea.SelectedIndex = LstView_MainNav.SelectedIndex;
+            Frm_ContentArea.Navigate(menuButton.LinkedPage);
             Lbl_ToolbarTitle.Content = menuButton.ButtonText;
         }
     }

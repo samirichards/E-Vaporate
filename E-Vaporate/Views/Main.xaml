@@ -44,38 +44,36 @@
             </Grid>
             <Grid x:Name="Grd_ContentArea">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Background="{StaticResource PrimaryHueDarkBrush}">
-                    <ListView x:Name="LstView_MainNav" HorizontalContentAlignment="Stretch" Background="{StaticResource PrimaryHueDarkBrush}" SelectionChanged="LstView_MainNav_SelectionChanged">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <materialDesign:Ripple HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
-                                <Grid Height="52">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="10*"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-                                        <Label Grid.Column="1" FontSize="18" FontWeight="DemiBold" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" x:Name="Lbl_Text" Content="{Binding ButtonText}"/>
-                                    </Grid>
-                                </materialDesign:Ripple>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        <ListView x:Name="LstView_MainNav" HorizontalContentAlignment="Stretch" Background="{StaticResource PrimaryHueDarkBrush}" SelectionChanged="LstView_MainNav_SelectionChanged">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <materialDesign:Ripple HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
+                                        <Grid Height="52">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="10*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="10*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Column="1" FontSize="18" FontWeight="DemiBold" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" x:Name="Lbl_Text" Content="{Binding ButtonText}"/>
+                                        </Grid>
+                                    </materialDesign:Ripple>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackPanel>
                 </ScrollViewer>
-                <materialDesign:Transitioner x:Name="Frm_contentArea">
-                </materialDesign:Transitioner>
+                <Frame NavigationUIVisibility="Hidden" Grid.Column="1" x:Name="Frm_ContentArea"/>
             </Grid>
         </DockPanel>
-
     </Grid>
 </Controls:MetroWindow>
