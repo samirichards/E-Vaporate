@@ -57,7 +57,7 @@ namespace E_Vaporate.Classes
             }
             using (context)
             {
-                Model.User temp = context.Users.Where(u => u.Username.ToLower().Equals(username.ToLower(), StringComparison.CurrentCultureIgnoreCase)).First();
+                Model.User temp = context.Users.Where(u => u.Username.ToLower().Equals(username.ToLower(), StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
                 if (temp != null)
                 {
                     if (temp.HashedPassword.Sum(a=> int.Parse(a.ToString())) == GeneratePasswordSalt(password, username.ToLower()).Sum(a => int.Parse(a.ToString())))
@@ -71,6 +71,14 @@ namespace E_Vaporate.Classes
                     return null;
                 }
             }
+        }
+
+        public static async Task<Model.User> Test(string username, string password)
+        {
+            return await Task.Run(() =>
+             {
+                 return GetUser(username, password);
+             });
         }
 
         public static bool IsPublisher(Model.User user)

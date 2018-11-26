@@ -43,7 +43,10 @@
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
-                            <Image Source="{StaticResource Logo}" Height="96" Width="96" Grid.Column="1" Grid.Row="0" Margin="12"/>
+                            <Grid Grid.Column="1" Grid.Row="0">
+                                <Image Source="{StaticResource Logo}" Height="96" Width="96" Margin="12"/>
+                                <Controls:ProgressRing IsActive="False" x:Name="Prog_ProgressRing" Width="112" Height="112" Foreground="{DynamicResource SecondaryAccentBrush}"/>
+                            </Grid>
                             <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
                                 <Label Width="80" DockPanel.Dock="Left" Content="Username:" VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
                                 <TextBox x:Name="Txt_Username" Height="28" Margin="6"/>
@@ -59,7 +62,7 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft">
-                            <Button x:Name="Btn_Login" Content="Login" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="6" VerticalAlignment="Center" Click="Btn_Login_Click"/>
+                            <Button x:Name="Btn_Login" Content="Login" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="6" VerticalAlignment="Center" Click="Btn_Login_Click" IsDefault="True"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

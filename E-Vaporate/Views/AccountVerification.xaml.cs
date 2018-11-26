@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Data.Entity;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -103,6 +104,11 @@ namespace E_Vaporate.Views
                 case 0:
                     break;
             }
+            RegisterAccount();
+        }
+
+        private async Task RegisterAccount()
+        {
             using (var context = new Model.EVaporateModel())
             {
                 if (context.Users.Where(b => b.Username == Txt_RegUsername.Text).SingleOrDefault() != null)
@@ -137,7 +143,7 @@ namespace E_Vaporate.Views
                     try
                     {
                         context.Users.Add(user);
-                        context.SaveChanges();
+                        await context.SaveChangesAsync();
                         MessageBox.Show("Successfully signed up");
                         Txt_Username.Text = Txt_RegUsername.Text;
                         Txt_Password.Password = Txt_RegPassword.Password;
@@ -169,16 +175,24 @@ namespace E_Vaporate.Views
 
         private void Btn_Login_Click(object sender, RoutedEventArgs e)
         {
-            Model.User temp = Classes.Utilities.GetUser(Txt_Username.Text, Txt_Password.Password);
+            Prog_ProgressRing.IsActive = true;
+            Login();
+        }
+
+        private async Task Login()
+        {
+            Model.User temp = await Classes.Utilities.Test(Txt_Username.Text, Txt_Password.Password);
             if (temp != null)
             {
                 Main main = new Main(temp);
                 main.Show();
+                Prog_ProgressRing.IsActive = true;
                 Hide();
             }
             else
             {
                 MessageBox.Show("User not found");
+                Prog_ProgressRing.IsActive = false;
             }
         }
     }

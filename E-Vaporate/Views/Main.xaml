@@ -35,12 +35,13 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="Lbl_ToolbarTitle" Grid.Column="1" Grid.Row="1" Content="Test" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="24" FontWeight="DemiBold"/>
-                <TextBox x:Name="Txt_ToolbarSearch" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center" Margin="8,0,8,0"/>
-                <Image Grid.Column="2" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Center" x:Name="Img_UserIcon" Height="24" Width="24">
-                    <Image.Clip>
-                        <EllipseGeometry RadiusX="12" RadiusY="12" Center="12 12"/>
-                    </Image.Clip>
-                </Image>
+                <materialDesign:Ripple materialDesign:RippleAssist.IsCentered="True" materialDesign:RippleAssist.RippleSizeMultiplier="0.5" ClipToBounds="False" materialDesign:RippleAssist.Feedback="White" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center">
+                    <Image Source="{StaticResource Logo}" x:Name="Img_UserIcon" Height="42" Width="42">
+                        <Image.Clip>
+                            <EllipseGeometry RadiusX="12" RadiusY="12" Center="21 21"/>
+                        </Image.Clip>
+                    </Image>
+                </materialDesign:Ripple>
             </Grid>
             <Grid x:Name="Grd_ContentArea">
                 <Grid.ColumnDefinitions>
