@@ -20,6 +20,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" Icon="/E-Vaporate;component/Assets/logo.png">
+
     <Grid>
         <DockPanel>
             <Grid x:Name="Grd_Toolbar" Height="52" DockPanel.Dock="Top" VerticalAlignment="Top" Background="{StaticResource PrimaryHueDarkBrush}" materialDesign:ShadowAssist.ShadowEdges="Bottom">
@@ -35,7 +36,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="Lbl_ToolbarTitle" Grid.Column="1" Grid.Row="1" Content="Test" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="24" FontWeight="DemiBold"/>
-                <materialDesign:Ripple materialDesign:RippleAssist.IsCentered="True" materialDesign:RippleAssist.RippleSizeMultiplier="0.5" ClipToBounds="False" materialDesign:RippleAssist.Feedback="White" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center">
+                <materialDesign:Ripple materialDesign:RippleAssist.IsCentered="True" ClipToBounds="False" materialDesign:RippleAssist.Feedback="White" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center">
                     <Image Source="{StaticResource Logo}" x:Name="Img_UserIcon" Height="42" Width="42">
                         <Image.Clip>
                             <EllipseGeometry RadiusX="12" RadiusY="12" Center="21 21"/>
@@ -53,7 +54,7 @@
                         <ListView x:Name="LstView_MainNav" HorizontalContentAlignment="Stretch" Background="{StaticResource PrimaryHueDarkBrush}" SelectionChanged="LstView_MainNav_SelectionChanged">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <materialDesign:Ripple HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
+                                    <materialDesign:Ripple Padding="0" Margin="0" HorizontalContentAlignment="Center" materialDesign:RippleAssist.ClipToBounds="False" materialDesign:RippleAssist.RippleSizeMultiplier="1.1" materialDesign:RippleAssist.Feedback="{DynamicResource SecondaryAccentBrush}" HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
                                         <Grid Height="52">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="1*"/>

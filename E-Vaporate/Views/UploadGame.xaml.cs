@@ -24,6 +24,19 @@ namespace E_Vaporate.Views
         {
             LoggedInUser = user;
             InitializeComponent();
+            PopulateCategories();
+        }
+
+#pragma warning disable CS1998
+        private async void PopulateCategories()
+#pragma warning restore CS1998
+        {
+            var context = new Model.EVaporateModel();
+            using (context)
+            {
+                List<string> categories = context.Categories.Take(context.Categories.Count()).Select(s=>s.Category1).ToList();
+                Cmb_CategoryAssignment.ItemsSource = categories;
+            }
         }
     }
 }

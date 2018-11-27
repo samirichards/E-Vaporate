@@ -106,7 +106,9 @@ namespace E_Vaporate.Views
             }
             Prog_RegisterProgressBar.Visibility = Visibility.Visible;
             LockRegInputs();
+#pragma warning disable CS4014
             RegisterAccount();
+#pragma warning restore CS4014
         }
 
         private async Task RegisterAccount()
@@ -216,7 +218,9 @@ namespace E_Vaporate.Views
         private void Btn_Login_Click(object sender, RoutedEventArgs e)
         {
             Prog_ProgressRing.IsActive = true;
+#pragma warning disable CS4014
             Login();
+#pragma warning restore CS4014
         }
 
         private async Task Login()

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace E_Vaporate.Views.Pages
 {
@@ -37,8 +38,11 @@ namespace E_Vaporate.Views.Pages
 
         private void Btn_AddNewGame_Click(object sender, RoutedEventArgs e)
         {
-            UploadGame upload = new UploadGame(LoggedInUser);
-            upload.Show();
+            if (!Application.Current.Windows.OfType<MahApps.Metro.Controls.MetroWindow>().Any(w=> w.GetType().Equals(typeof(UploadGame))))
+            {
+                UploadGame upload = new UploadGame(LoggedInUser);
+                upload.Show();
+            }
         }
     }
 }
