@@ -39,7 +39,7 @@ namespace E_Vaporate.Views
             {
                 if (Classes.Utilities.IsPublisher(LoggedInUser))
                 {
-                    MainNavList.Add(new NavMenuButton { ButtonText = "Publisher", LinkedPage = new Pages.PublisherPage() });
+                    MainNavList.Add(new NavMenuButton { ButtonText = "Publisher", LinkedPage = new Pages.PublisherPage(LoggedInUser) });
                 }
             }
             LstView_MainNav.ItemsSource = MainNavList;
@@ -50,7 +50,7 @@ namespace E_Vaporate.Views
                 new Pages.Library(),
                 new Pages.Account(),
                 new Pages.Settings(),
-                new Pages.PublisherPage()
+                new Pages.PublisherPage(LoggedInUser)
             };
 
             LstView_MainNav.SelectedIndex = 0;

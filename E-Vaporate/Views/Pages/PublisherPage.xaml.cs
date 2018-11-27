@@ -20,9 +20,25 @@ namespace E_Vaporate.Views.Pages
     /// </summary>
     public partial class PublisherPage : Page
     {
-        public PublisherPage()
+        public Model.User LoggedInUser { get; set; }
+        public PublisherPage(Model.User user)
         {
             InitializeComponent();
+            LoggedInUser = user;
+
+            List<Model.Game> games = new List<Model.Game>();
+            var context = new Model.EVaporateModel();
+            using (context)
+            {
+                games.AddRange(context.Games.Where(p => p.Publisher == LoggedInUser.UserID).ToList());
+            }
+            Lst_PublishedGames.ItemsSource = games;
+        }
+
+        private void Btn_AddNewGame_Click(object sender, RoutedEventArgs e)
+        {
+            UploadGame upload = new UploadGame(LoggedInUser);
+            upload.Show();
         }
     }
 }

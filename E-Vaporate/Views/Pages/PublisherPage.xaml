@@ -18,6 +18,35 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
 
     <Grid>
-        
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <ListView x:Name="Lst_PublishedGames" Grid.Column="0" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <materialDesign:Ripple>
+                    <Grid Height="24">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="6*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image x:Name="Img_GameThumbnail" Grid.Column="0" Source="{Binding Thumbnail}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label x:Name="Lbl_GameName" Grid.Column="1" Content="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    </Grid>
+                    </materialDesign:Ripple>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </ScrollViewer>
+        <Button x:Name="Btn_AddNewGame" Click="Btn_AddNewGame_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="8" Width="48" Height="48" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+            <Image Source="{StaticResource Add}"/>
+        </Button>
+
+        <Frame x:Name="Frm_GamePubPage" Grid.Column="1"/>
+        <Label Content="No game to show here" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="9" Foreground="Gray"/>
+
     </Grid>
 </Page>

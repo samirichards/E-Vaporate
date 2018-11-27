@@ -104,6 +104,8 @@ namespace E_Vaporate.Views
                 case 0:
                     break;
             }
+            Prog_RegisterProgressBar.Visibility = Visibility.Visible;
+            LockRegInputs();
             RegisterAccount();
         }
 
@@ -115,6 +117,7 @@ namespace E_Vaporate.Views
                 {
                     MessageBox.Show("That user already exists");
                     Txt_RegUsername.Text = string.Empty;
+                    UnlockRegInputs();
                 }
                 else
                 {
@@ -145,12 +148,15 @@ namespace E_Vaporate.Views
                         context.Users.Add(user);
                         await context.SaveChangesAsync();
                         MessageBox.Show("Successfully signed up");
+                        UnlockRegInputs();
+                        Prog_RegisterProgressBar.Visibility = Visibility.Hidden;
                         Txt_Username.Text = Txt_RegUsername.Text;
                         Txt_Password.Password = Txt_RegPassword.Password;
                     }
                     catch (Exception b)
                     {
                         MessageBox.Show("Could not create an account" + Environment.NewLine + b.Message);
+                        UnlockRegInputs();
                     }
                 }
             }
@@ -171,6 +177,40 @@ namespace E_Vaporate.Views
                 return 1;
             }
             else return 0;
+        }
+
+        private void LockRegInputs()
+        {
+            Txt_FirstName.IsEnabled = false;
+            Txt_LastName.IsEnabled = false;
+            Txt_RegPassword.IsEnabled = false;
+            Txt_RegPasswordConf.IsEnabled = false;
+            Txt_RegUsername.IsEnabled = false;
+            Txt_Email.IsEnabled = false;
+            Txt_Postcode.IsEnabled = false;
+            Txt_AddrLine1.IsEnabled = false;
+            Txt_AddrLine2.IsEnabled = false;
+            Txt_AddrLine3.IsEnabled = false;
+            Btn_BackToLogin.IsEnabled = false;
+            Btn_Register.IsEnabled = false;
+            Chk_Publisher.IsEnabled = false;
+        }
+
+        private void UnlockRegInputs()
+        {
+            Txt_FirstName.IsEnabled = true;
+            Txt_LastName.IsEnabled = true;
+            Txt_RegPassword.IsEnabled = true;
+            Txt_RegPasswordConf.IsEnabled = true;
+            Txt_RegUsername.IsEnabled = true;
+            Txt_Email.IsEnabled = true;
+            Txt_Postcode.IsEnabled = true;
+            Txt_AddrLine1.IsEnabled = true;
+            Txt_AddrLine2.IsEnabled = true;
+            Txt_AddrLine3.IsEnabled = true;
+            Btn_BackToLogin.IsEnabled = true;
+            Btn_Register.IsEnabled = true;
+            Chk_Publisher.IsEnabled = true;
         }
 
         private void Btn_Login_Click(object sender, RoutedEventArgs e)

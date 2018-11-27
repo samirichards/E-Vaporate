@@ -17,10 +17,12 @@ namespace E_Vaporate.Views
     /// <summary>
     /// Interaction logic for UploadGame.xaml
     /// </summary>
-    public partial class UploadGame : Window
+    public partial class UploadGame : MahApps.Metro.Controls.MetroWindow
     {
-        public UploadGame()
+        public Model.User LoggedInUser { get; set; }
+        public UploadGame(Model.User user)
         {
+            LoggedInUser = user;
             InitializeComponent();
         }
     }

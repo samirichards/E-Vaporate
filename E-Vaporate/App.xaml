@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Purple.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <BitmapImage x:Key="Logo" UriSource="Assets/logo.png"/>
+            <BitmapImage x:Key="Add" UriSource="Assets/baseline_add_white_48dp.png"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

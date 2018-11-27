@@ -87,7 +87,9 @@
                                 <RowDefinition Height="5*"/>
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
-                            <Label Grid.Column="1" FontWeight="Bold" FontSize="24" Grid.Row="0" Content="Register" VerticalAlignment="Center" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left" Margin="0,8,8,8"/>
+                            <StackPanel Grid.Column="1" Grid.Row="0" Margin="0,8,8,8">
+                                <Label FontWeight="Bold" FontSize="24" Content="Register" VerticalAlignment="Center" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
+                            </StackPanel>
                             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
                                 <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" LastChildFill="True">
                                     <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="First Name:"/>
@@ -113,12 +115,15 @@
                                     <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="Email:"/>
                                     <TextBox x:Name="Txt_Email" Height="28" Margin="4"/>
                                 </DockPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button x:Name="Btn_BackToLogin" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}" Content="Back" Style="{DynamicResource MaterialDesignFlatButton}" Margin="6" VerticalAlignment="Center" Click="Btn_BackToLogin_Click"/>
-                                    <Button x:Name="Btn_Register" Content="Register" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="6" VerticalAlignment="Center" Click="Btn_Register_Click"/>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button x:Name="Btn_BackToLogin" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}" Content="Back" Style="{DynamicResource MaterialDesignFlatButton}" Margin="6" VerticalAlignment="Center" Click="Btn_BackToLogin_Click"/>
+                                        <Button x:Name="Btn_Register" Content="Register" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="6" VerticalAlignment="Center" Click="Btn_Register_Click"/>
+                                    </StackPanel>
                                 </StackPanel>
                                 <Button x:Name="Btn_ExpandReg" Content="More Options" HorizontalAlignment="Right" Click="Btn_ExpandReg_Click"/>
                             </StackPanel>
+                            <ProgressBar Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" BorderThickness="0" Background="{StaticResource SecondaryAccentBrush}" x:Name="Prog_RegisterProgressBar" IsIndeterminate="True" Visibility="Hidden"/>
                         </Grid>
                         <Grid Width="390">
                             <Grid.ColumnDefinitions>
