@@ -38,7 +38,16 @@
             </DockPanel>
             <DockPanel LastChildFill="True">
                 <Label Content="Category" VerticalAlignment="Center" Margin="8"/>
-                <ComboBox x:Name="Cmb_CategoryAssignment" Margin="8"/>
+                <ComboBox x:Name="Cmb_CategoryAssignment" Margin="8">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox VerticalAlignment="Center" x:Name="Chk_CategoryChecked"/>
+                                <Label Content="{Binding Category}" VerticalAlignment="Center" x:Name="Txt_CategoryName"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </DockPanel>
             <DockPanel LastChildFill="True">
                 <Label Content="Game Price" VerticalAlignment="Center" Margin="8"/>
