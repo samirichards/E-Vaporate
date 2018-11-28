@@ -54,21 +54,19 @@
                         <ListView x:Name="LstView_MainNav" HorizontalContentAlignment="Stretch" Background="{StaticResource PrimaryHueDarkBrush}" SelectionChanged="LstView_MainNav_SelectionChanged">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <materialDesign:Ripple Padding="0" Margin="0" HorizontalContentAlignment="Center" materialDesign:RippleAssist.ClipToBounds="False" materialDesign:RippleAssist.RippleSizeMultiplier="1.1" materialDesign:RippleAssist.Feedback="{DynamicResource SecondaryAccentBrush}" HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
-                                        <Grid Height="52">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="1*"/>
-                                                <ColumnDefinition Width="10*"/>
-                                                <ColumnDefinition Width="1*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="1*"/>
-                                                <RowDefinition Height="10*"/>
-                                                <RowDefinition Height="1*"/>
-                                            </Grid.RowDefinitions>
-                                            <Label Grid.Column="1" FontSize="18" FontWeight="DemiBold" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" x:Name="Lbl_Text" Content="{Binding ButtonText}"/>
-                                        </Grid>
-                                    </materialDesign:Ripple>
+                                    <Grid Height="52">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="10*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="10*"/>
+                                            <RowDefinition Height="1*"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Column="1" FontSize="18" FontWeight="DemiBold" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" x:Name="Lbl_Text" Content="{Binding ButtonText}"/>
+                                    </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>

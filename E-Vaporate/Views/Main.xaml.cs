@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using E_Vaporate.Model;
 
 namespace E_Vaporate.Views
 {
@@ -20,10 +21,9 @@ namespace E_Vaporate.Views
     /// </summary>
     public partial class Main : MetroWindow
     {
+        public User LoggedInUser { get; set; }
 
-        public Model.User LoggedInUser { get; set; }
-
-        public Main(Model.User _user)
+        public Main(User _user)
         {
             LoggedInUser = _user;
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace E_Vaporate.Views
                 new NavMenuButton { ButtonText = "Account", LinkedPage = new Pages.Account() },
                 new NavMenuButton { ButtonText = "Settings", LinkedPage = new Pages.Settings() }
             };
-            using (var context = new Model.EVaporateModel())
+            using (var context = new EVaporateModel())
             {
                 if (Classes.Utilities.IsPublisher(LoggedInUser))
                 {
@@ -54,6 +54,12 @@ namespace E_Vaporate.Views
             };
 
             LstView_MainNav.SelectedIndex = 0;
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Application.Current.Shutdown();
         }
 
         private void LstView_MainNav_SelectionChanged(object sender, SelectionChangedEventArgs e)

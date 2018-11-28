@@ -9,7 +9,7 @@
         Title="E-Vaporate Upload Game Tool"
         BorderThickness="0"
         Width="800"
-        Height="600"
+        Height="700"
         ResizeBorderThickness="4"
         ShowIconOnTitleBar="False"
         EnableDWMDropShadow="True"
@@ -37,21 +37,25 @@
                 <TextBox x:Name="Txt_GameDescription" MinLines="6" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Center" Margin="8"/>
             </DockPanel>
             <DockPanel LastChildFill="True">
-                <Label Content="Category" VerticalAlignment="Center" Margin="8"/>
-                <ComboBox x:Name="Cmb_CategoryAssignment" Margin="8">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <CheckBox VerticalAlignment="Center" x:Name="Chk_CategoryChecked"/>
-                                <Label Content="{Binding Category}" VerticalAlignment="Center" x:Name="Txt_CategoryName"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </DockPanel>
-            <DockPanel LastChildFill="True">
                 <Label Content="Game Price" VerticalAlignment="Center" Margin="8"/>
                 <TextBox x:Name="Txt_GamePrice" VerticalAlignment="Center" ToolTip="Price must be entered in the form xx.yy with no currency (£,$, etc.)" Margin="8"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True" VerticalAlignment="Bottom" >
+                <Label Content="Category" VerticalAlignment="Top" Margin="8"/>
+                <ListView VerticalAlignment="Bottom" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" x:Name="Lst_CategoryAssignment" Margin="8" MinHeight="200" MaxHeight="350">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Background="{DynamicResource SecondaryAccentBrush}" Content="{Binding Category1}" x:Name="Chk_CategoryChecked"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Template>
+                        <ControlTemplate>
+                            <ScrollViewer>
+                                <ItemsPresenter HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListView.Template>
+                </ListView>
             </DockPanel>
         </StackPanel>
         <Grid Grid.Column="1">
@@ -70,7 +74,7 @@
                 </StackPanel>
             </StackPanel>
             <Grid Margin="12" VerticalAlignment="Bottom">
-                <CheckBox Content="Game Available" Background="Green" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Center"/>
+                <CheckBox Content="Game Available" Background="#4CAF50" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Center"/>
                 <Button x:Name="Btn_PublishGame" Content="Publish" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="8" />
             </Grid>
         </Grid>

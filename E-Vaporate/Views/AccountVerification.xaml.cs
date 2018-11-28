@@ -114,7 +114,7 @@ namespace E_Vaporate.Views
 
         private async Task RegisterAccount()
         {
-            using (var context = new Model.EVaporateModel())
+            using (var context = new EVaporateModel())
             {
                 if (context.Users.Where(b => b.Username == Txt_RegUsername.Text).SingleOrDefault() != null)
                 {
@@ -124,7 +124,7 @@ namespace E_Vaporate.Views
                 }
                 else
                 {
-                    Model.User user = new Model.User
+                    User user = new User
                     {
                         Username = Txt_RegUsername.Text,
                         FirstName = Txt_FirstName.Text,
@@ -139,7 +139,7 @@ namespace E_Vaporate.Views
                     };
                     if (Chk_Publisher.IsChecked.Value)
                     {
-                        Model.Publisher publisher = new Model.Publisher
+                        Publisher publisher = new Publisher
                         {
                             PublisherID = user.UserID,
                             DeveloperName = user.Username
@@ -219,14 +219,12 @@ namespace E_Vaporate.Views
         private void Btn_Login_Click(object sender, RoutedEventArgs e)
         {
             Prog_ProgressRing.IsActive = true;
-#pragma warning disable CS4014
             Login();
-#pragma warning restore CS4014
         }
 
         private async Task Login()
         {
-            Model.User temp = await Classes.Utilities.Test(Txt_Username.Text, Txt_Password.Password);
+            User temp = await Classes.Utilities.Test(Txt_Username.Text, Txt_Password.Password);
             if (temp != null)
             {
                 Main main = new Main(temp);
@@ -239,6 +237,12 @@ namespace E_Vaporate.Views
                 MessageBox.Show("User not found");
                 Prog_ProgressRing.IsActive = false;
             }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Application.Current.Shutdown();
         }
     }
 }

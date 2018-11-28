@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Configuration;
+using E_Vaporate.Model;
 
 namespace E_Vaporate.Views
 {

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using E_Vaporate.Model;
 
 namespace E_Vaporate.Views
 {
@@ -19,8 +20,8 @@ namespace E_Vaporate.Views
     /// </summary>
     public partial class UploadGame : MahApps.Metro.Controls.MetroWindow
     {
-        public Model.User LoggedInUser { get; set; }
-        public UploadGame(Model.User user)
+        public User LoggedInUser { get; set; }
+        public UploadGame(User user)
         {
             LoggedInUser = user;
             InitializeComponent();
@@ -30,11 +31,11 @@ namespace E_Vaporate.Views
 
         private void PopulateCategories()
         {
-            using (var context = new Model.EVaporateModel())
+            using (var context = new EVaporateModel())
             {
-                List<Model.Category> categories = context.Categories.Take(context.Categories.Count()).ToList<Model.Category>();
-                Cmb_CategoryAssignment.ItemsSource = categories;
-                Cmb_CategoryAssignment.DataContext = categories;
+                List<Category> categories = context.Categories.Take(context.Categories.Count()).ToList<Model.Category>();
+                Lst_CategoryAssignment.ItemsSource = categories;
+                Lst_CategoryAssignment.DataContext = categories;
             }
         }
     }
