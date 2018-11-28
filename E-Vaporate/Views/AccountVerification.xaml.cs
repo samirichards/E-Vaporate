@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
+using E_Vaporate.Model;
 
 namespace E_Vaporate.Views
 {

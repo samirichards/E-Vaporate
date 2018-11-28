@@ -19,7 +19,7 @@ namespace E_Vaporate
             {
                 System.Data.SqlClient.SqlConnection connection = new System.Data.SqlClient.SqlConnection
                 {
-                    ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ServerDB"].ConnectionString
+                    ConnectionString = ConfigurationManager.ConnectionStrings["ServerDB"].ConnectionString
                 };
                 connection.Open();
                 connection.Close();
