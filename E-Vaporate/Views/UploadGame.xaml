@@ -29,16 +29,16 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Orientation="Vertical">
             <DockPanel LastChildFill="True">
-                <Label Content="Game Title" VerticalAlignment="Center" Margin="8"/>
+                <Label Content="Game Title*" VerticalAlignment="Center" Margin="8"/>
                 <TextBox x:Name="Txt_GameName" VerticalAlignment="Center" Margin="8"/>
             </DockPanel>
             <DockPanel LastChildFill="True">
-                <Label Content="Description" VerticalAlignment="Top" Margin="8"/>
+                <Label Content="Description*" VerticalAlignment="Top" Margin="8"/>
                 <TextBox x:Name="Txt_GameDescription" MinLines="6" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Center" Margin="8"/>
             </DockPanel>
             <DockPanel LastChildFill="True">
-                <Label Content="Game Price" VerticalAlignment="Center" Margin="8"/>
-                <TextBox x:Name="Txt_GamePrice" VerticalAlignment="Center" ToolTip="Price must be entered in the form xx.yy with no currency (£,$, etc.)" Margin="8"/>
+                <Label Content="Game Price*" VerticalAlignment="Center" Margin="8"/>
+                <TextBox PreviewTextInput="NumberValidationTextBox" x:Name="Txt_GamePrice" VerticalAlignment="Center" ToolTip="Price must be entered in the form xx.yy with no currency (£,$, etc.)" Margin="8"/>
             </DockPanel>
             <DockPanel LastChildFill="True" VerticalAlignment="Bottom" >
                 <Label Content="Category" VerticalAlignment="Top" Margin="8"/>
@@ -61,21 +61,28 @@
         <Grid Grid.Column="1">
         <StackPanel>
             <Label x:Name="Lbl_PublisherName" HorizontalAlignment="Right" Margin="8" FontSize="16" FontWeight="DemiBold" Content="Publisher Name: [X]"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="Btn_UploadHeader" Content="Upload Header" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="8" />
-                <Button x:Name="Btn_UploadThumbnail" Content="Upload Thumbnail" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="8" />
-                <Button x:Name="Btn_UploadUrl" Content="Add URL" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8" />
-            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="Btn_UploadHeader" Content="Upload Header" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="8" Click="Btn_UploadHeader_Click" />
+                <Button x:Name="Btn_UploadThumbnail" Content="Upload Thumbnail" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="8" Click="Btn_UploadThumbnail_Click" />
+                </StackPanel>
                 <StackPanel>
                     <Grid>
                         <Image Panel.ZIndex="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8" x:Name="Img_ThumbnailPreview" MaxHeight="100" DockPanel.Dock="Left" MaxWidth="100" Source="{StaticResource Placeholder}"/>
-                        <Image Panel.ZIndex="-10" HorizontalAlignment="Left" x:Name="Img_HeaderPreview" DockPanel.Dock="Bottom" MaxHeight="150" Stretch="UniformToFill" Source="{StaticResource Placeholder}"/>
+                        <Image Panel.ZIndex="-10" HorizontalAlignment="Left" x:Name="Img_HeaderPreview" DockPanel.Dock="Bottom" MaxHeight="200" Stretch="UniformToFill" Source="{StaticResource Placeholder}"/>
                     </Grid>
+                    <DockPanel LastChildFill="True">
+                        <Label Content="Game URL*" VerticalAlignment="Center" Margin="8"/>
+                        <TextBox x:Name="Txt_GameUrl" VerticalAlignment="Center" Margin="8"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="True">
+                        <Label Content="* Required" Opacity="0.52" VerticalAlignment="Center" Margin="8"/>
+                    </DockPanel>
                 </StackPanel>
+                <Controls:ProgressRing HorizontalAlignment="Right" Margin="16" x:Name="Prog_UploadProg" IsActive="False" Width="48" Height="48"/>
             </StackPanel>
             <Grid Margin="12" VerticalAlignment="Bottom">
-                <CheckBox Content="Game Available" Background="#4CAF50" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Center"/>
-                <Button x:Name="Btn_PublishGame" Content="Publish" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="8" />
+                <CheckBox x:Name="Chk_IsAvailable" Content="Game Available" Background="#4CAF50" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Center"/>
+                <Button Click="Btn_PublishGame_Click" x:Name="Btn_PublishGame" Content="Publish" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="8" />
             </Grid>
         </Grid>
     </Grid>

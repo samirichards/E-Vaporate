@@ -23,24 +23,27 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <ListView x:Name="Lst_PublishedGames" Grid.Column="0" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <materialDesign:Ripple>
-                    <Grid Height="24">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="6*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image x:Name="Img_GameThumbnail" Grid.Column="0" Source="{Binding Thumbnail}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Label x:Name="Lbl_GameName" Grid.Column="1" Content="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    </Grid>
-                    </materialDesign:Ripple>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        </ScrollViewer>
+        <StackPanel>
+            <Button Content="Refresh" Click="Button_Click"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ListView x:Name="Lst_PublishedGames" Grid.Column="0" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <materialDesign:Ripple>
+                                <Grid Height="24">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="6*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="Img_GameThumbnail" Grid.Column="0" Source="{Binding Thumbnail}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <Label x:Name="Lbl_GameName" Grid.Column="1" Content="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                </Grid>
+                            </materialDesign:Ripple>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+        </StackPanel>
         <Button x:Name="Btn_AddNewGame" Click="Btn_AddNewGame_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="8" Width="48" Height="48" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
             <Image Source="{StaticResource Add}"/>
         </Button>

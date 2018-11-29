@@ -26,14 +26,7 @@ namespace E_Vaporate.Views.Pages
         {
             InitializeComponent();
             LoggedInUser = user;
-
-            List<Model.Game> games = new List<Model.Game>();
-            var context = new Model.EVaporateModel();
-            using (context)
-            {
-                games.AddRange(context.Games.Where(p => p.Publisher == LoggedInUser.UserID).ToList());
-            }
-            Lst_PublishedGames.ItemsSource = games;
+            Refresh();
         }
 
         private void Btn_AddNewGame_Click(object sender, RoutedEventArgs e)
@@ -43,6 +36,21 @@ namespace E_Vaporate.Views.Pages
                 UploadGame upload = new UploadGame(LoggedInUser);
                 upload.Show();
             }
+        }
+
+        private void Refresh()
+        {
+            List<Model.Game> games = new List<Model.Game>();
+            using (var context = new Model.EVaporateModel())
+            {
+                games.AddRange(context.Games.Where(p => p.Publisher == LoggedInUser.UserID).ToList());
+            }
+            Lst_PublishedGames.ItemsSource = games;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
         }
     }
 }
