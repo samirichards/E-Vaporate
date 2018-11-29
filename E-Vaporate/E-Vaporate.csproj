@@ -118,6 +118,9 @@
     <Compile Include="Views\Pages\Library.xaml.cs">
       <DependentUpon>Library.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\PublisherGameItem.xaml.cs">
+      <DependentUpon>PublisherGameItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\PublisherPage.xaml.cs">
       <DependentUpon>PublisherPage.xaml</DependentUpon>
     </Compile>
@@ -150,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Library.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\PublisherGameItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,47 @@
+﻿<Page   x:Class="E_Vaporate.Views.Pages.PublisherGameItem"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:E_Vaporate.Views.Pages"
+        mc:Ignorable="d" 
+        d:DesignHeight="450" d:DesignWidth="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Unloaded="Page_Unloaded">
+    <ScrollViewer>
+        <StackPanel>
+            <Grid Height="300">
+                <Label HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8" x:Name="Lbl_PublisherName" Content="Publisher: "/>
+                <Image HorizontalAlignment="Stretch" Stretch="UniformToFill" VerticalAlignment="Center" Source="{Binding HeaderImage}"/>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" >
+                    <StackPanel Panel.ZIndex="10" Opacity="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="8" Orientation="Horizontal">
+                        <Image Width="120" Height="120" Source="{Binding Thumbnail}"/>
+                        <TextBox MinWidth="120" VerticalAlignment="Center" x:Name="Lbl_Name" FontSize="24" FontWeight="Bold" Margin="8" Text="{Binding Title}"/>
+                    </StackPanel>
+                    <Grid Panel.ZIndex="-10" Background="Black" Opacity="0.48" />
+                </Grid>
+            </Grid>
+            <Grid Margin="8">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <Label Content="Price"/>
+                            <TextBox MinWidth="40" Margin="8" MaxLines="1" x:Name="Txt_Price" Text="{Binding Price}"/>
+                        </StackPanel>
+                        <CheckBox Content="Available" IsChecked="{Binding Available}"/>
+                    </StackPanel>
+                    <Label Content="Description"/>
+                    <TextBox Margin="8" TextWrapping="Wrap" x:Name="Txt_Description" MinLines="1" Text="{Binding Description}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

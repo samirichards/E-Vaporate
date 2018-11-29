@@ -56,7 +56,6 @@ namespace E_Vaporate.Views
             {
                 game.HeaderImage = System.IO.File.ReadAllBytes(dialog.FileName);
             }
-
             var image = new BitmapImage();
             using (var ms = new System.IO.MemoryStream(game.HeaderImage))
             {

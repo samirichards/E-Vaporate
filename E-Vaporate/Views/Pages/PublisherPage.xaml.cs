@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using E_Vaporate.Model;
 
 namespace E_Vaporate.Views.Pages
 {
@@ -40,8 +41,8 @@ namespace E_Vaporate.Views.Pages
 
         private void Refresh()
         {
-            List<Model.Game> games = new List<Model.Game>();
-            using (var context = new Model.EVaporateModel())
+            List<Game> games = new List<Game>();
+            using (var context = new EVaporateModel())
             {
                 games.AddRange(context.Games.Where(p => p.Publisher == LoggedInUser.UserID).ToList());
             }
@@ -51,6 +52,16 @@ namespace E_Vaporate.Views.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Refresh();
+        }
+
+        private void Lst_PublishedGames_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Frm_GamePubPage.Content != null)
+            {
+                ((PublisherGameItem)Frm_GamePubPage.Content).Dispose();
+            }
+            Frm_GamePubPage.Navigate(new PublisherGameItem((Game)Lst_PublishedGames.SelectedItem), KeepAlive = false);
+            GC.Collect(1);
         }
     }
 }
