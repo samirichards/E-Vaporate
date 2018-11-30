@@ -15,7 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <ScrollViewer>
+    <ScrollViewer Background="{Binding MaterialDesignPaper}">
         <StackPanel>
             <Grid Height="300">
                 <Label HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8" x:Name="Lbl_PublisherName" Content="Publisher: "/>
