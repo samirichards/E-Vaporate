@@ -19,12 +19,11 @@ namespace E_Vaporate.Views.Pages
     /// <summary>
     /// Interaction logic for PublisherGameItem.xaml
     /// </summary>
-    public partial class PublisherGameItem : Page, IDisposable
+    public partial class PublisherGameItem : UserControl, IDisposable
     {
         public Game GameItem { get; set; }
         public PublisherGameItem(Game game)
         {
-            KeepAlive = false;
             GameItem = game;
             DataContext = GameItem;
             InitializeComponent();
@@ -33,11 +32,6 @@ namespace E_Vaporate.Views.Pages
         public void Dispose()
         {
             GC.SuppressFinalize(this);
-        }
-
-        private void Page_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Dispose();
         }
     }
 }

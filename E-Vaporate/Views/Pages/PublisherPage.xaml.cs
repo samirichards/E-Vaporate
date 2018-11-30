@@ -60,8 +60,8 @@ namespace E_Vaporate.Views.Pages
             {
                 ((PublisherGameItem)Frm_GamePubPage.Content).Dispose();
             }
-            Frm_GamePubPage.Navigate(new PublisherGameItem((Game)Lst_PublishedGames.SelectedItem), KeepAlive = false);
-            GC.Collect(1);
+            Frm_GamePubPage.Content = new PublisherGameItem((Game)Lst_PublishedGames.SelectedItem);
+            GC.Collect(4);
         }
     }
 }
