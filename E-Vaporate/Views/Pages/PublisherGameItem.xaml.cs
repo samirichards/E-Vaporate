@@ -30,14 +30,18 @@ namespace E_Vaporate.Views.Pages
             var context = new EVaporateModel();
             Lst_CategoryAssignment.ItemsSource = context.Categories.AsParallel();
             List<Category> categories = new List<Category>();
-            foreach (var item in context.CategoryAssignments.Where(g=> g.GameID == GameItem.GameID))
+            try
             {
-                categories.Add(context.Categories.Where(c => c.CategoryID == item.CategoryID).Single());
+                foreach (var item in context.CategoryAssignments.Where(g => g.GameID == GameItem.GameID))
+                {
+                    categories.Add(context.Categories.Where(c => c.CategoryID == item.CategoryID).Single());
+                }
+                foreach (var item in categories)
+                {
+                    Lst_CategoryAssignment.SelectedItems.Add(item);
+                }
             }
-            foreach (var item in categories)
-            {
-                Lst_CategoryAssignment.SelectedItems.Add(item);
-            }
+            catch (Exception) { }
         }
 
         public void Dispose()

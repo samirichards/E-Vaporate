@@ -41,6 +41,11 @@ namespace E_Vaporate.Views.Pages
 
         private void Refresh()
         {
+            if (Frm_GamePubPage.Content != null)
+            {
+                ((PublisherGameItem)Frm_GamePubPage.Content).Dispose();
+            }
+            Frm_GamePubPage.Content = null;
             List<Game> games = new List<Game>();
             using (var context = new EVaporateModel())
             {
