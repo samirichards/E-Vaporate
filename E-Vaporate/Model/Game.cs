@@ -12,7 +12,7 @@ namespace E_Vaporate.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Game()
         {
-            Categories = new HashSet<Category>();
+            CategoryAssignments = new HashSet<CategoryAssignment>();
             Users = new HashSet<User>();
         }
 
@@ -39,7 +39,7 @@ namespace E_Vaporate.Model
         public bool Available { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Category> Categories { get; set; }
+        public virtual ICollection<CategoryAssignment> CategoryAssignments { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }

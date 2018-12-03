@@ -48,7 +48,9 @@
             <Image Source="{StaticResource Add}"/>
         </Button>
 
-        <UserControl x:Name="Frm_GamePubPage" Grid.Column="1"/>
+        <materialDesign:Card VerticalAlignment="Stretch" Padding="0"  Grid.Column="1">
+            <UserControl x:Name="Frm_GamePubPage" Padding="0"/>
+        </materialDesign:Card>
 
     </Grid>
 </Page>

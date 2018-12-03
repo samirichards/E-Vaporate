@@ -105,6 +105,7 @@ namespace E_Vaporate.Views
             if (!ValidateUpload())
             {
                 MessageBox.Show("There are empty fields still");
+                return;
             }
             else
             {
@@ -121,6 +122,15 @@ namespace E_Vaporate.Views
                 using (var context = new EVaporateModel())
                 {
                     context.Games.Add(game);
+                    foreach (var item in Lst_CategoryAssignment.SelectedItems)
+                    {
+                        CategoryAssignment assignment = new CategoryAssignment
+                        {
+                            GameID = game.GameID,
+                            CategoryID = (item as Category).CategoryID
+                        };
+                        context.CategoryAssignments.Add(assignment);
+                    }
                     context.SaveChanges();
                     MessageBox.Show("That all went gucci");
                 }

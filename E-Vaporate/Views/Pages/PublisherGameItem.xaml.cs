@@ -27,11 +27,57 @@ namespace E_Vaporate.Views.Pages
             GameItem = game;
             DataContext = GameItem;
             InitializeComponent();
+            var context = new EVaporateModel();
+            Lst_CategoryAssignment.ItemsSource = context.Categories.AsParallel();
+            List<Category> categories = new List<Category>();
+            foreach (var item in context.CategoryAssignments.Where(g=> g.GameID == GameItem.GameID))
+            {
+                categories.Add(context.Categories.Where(c => c.CategoryID == item.CategoryID).Single());
+            }
+            foreach (var item in categories)
+            {
+                Lst_CategoryAssignment.SelectedItems.Add(item);
+            }
         }
 
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+        }
+
+        private async void Btn_SaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).IsEnabled = false;
+            Prog_SaveProgress.IsActive = true;
+            Grd_Background.Visibility = Visibility.Visible;
+            await SaveChanges();
+        }
+
+        private async Task SaveChanges()
+        {
+            try
+            {
+                using (var context = new EVaporateModel())
+                {
+                    context.Games.Where(g => g.GameID == GameItem.GameID).Single().Description = GameItem.Description;
+                    context.Games.Where(g => g.GameID == GameItem.GameID).Single().Directory = GameItem.Directory;
+                    context.Games.Where(g => g.GameID == GameItem.GameID).Single().Available = GameItem.Available;
+                    //context.Games.Where(g => g.GameID == GameItem.GameID).Single().Categories = GameItem.Categories;
+                    context.Games.Where(g => g.GameID == GameItem.GameID).Single().HeaderImage = GameItem.HeaderImage;
+                    context.Games.Where(g => g.GameID == GameItem.GameID).Single().Thumbnail = GameItem.Thumbnail;
+                    context.Games.Where(g => g.GameID == GameItem.GameID).Single().Title = GameItem.Title;
+                    context.Games.Where(g => g.GameID == GameItem.GameID).Single().Price = GameItem.Price;
+                    await context.SaveChangesAsync();
+                    MessageBox.Show("Changes saved sucessfully");
+                }
+            }
+            catch (Exception a)
+            {
+                MessageBox.Show("There was an issue saving your changes" + Environment.NewLine + a.Message);
+            }
+            Prog_SaveProgress.IsActive = false;
+            Btn_SaveChanges.IsEnabled = true;
+            Grd_Background.Visibility = Visibility.Hidden;
         }
     }
 }

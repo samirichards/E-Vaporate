@@ -216,10 +216,11 @@ namespace E_Vaporate.Views
             Chk_Publisher.IsEnabled = true;
         }
 
-        private void Btn_Login_Click(object sender, RoutedEventArgs e)
+        private async void Btn_Login_Click(object sender, RoutedEventArgs e)
         {
             Prog_ProgressRing.IsActive = true;
-            Login();
+            (sender as Button).IsEnabled = false;
+            await Login();
         }
 
         private async Task Login()

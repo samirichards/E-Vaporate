@@ -13,16 +13,23 @@ namespace E_Vaporate.Model
         }
 
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<CategoryAssignment> CategoryAssignments { get; set; }
         public virtual DbSet<Game> Games { get; set; }
         public virtual DbSet<Publisher> Publishers { get; set; }
+        public virtual DbSet<PublisherCode> PublisherCodes { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>()
-                .HasMany(e => e.Games)
-                .WithMany(e => e.Categories)
-                .Map(m => m.ToTable("CategoryAssignments").MapLeftKey("CategoryID").MapRightKey("GameID"));
+                .HasMany(e => e.CategoryAssignments)
+                .WithRequired(e => e.Category)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Game>()
+                .HasMany(e => e.CategoryAssignments)
+                .WithRequired(e => e.Game)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Game>()
                 .HasMany(e => e.Users)

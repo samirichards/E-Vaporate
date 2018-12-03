@@ -13,34 +13,58 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <ScrollViewer Background="{Binding MaterialDesignPaper}">
-        <StackPanel>
-            <Grid Height="300">
-                <Label HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8" x:Name="Lbl_PublisherName" Content="Publisher: "/>
-                <Image HorizontalAlignment="Center" Stretch="UniformToFill" VerticalAlignment="Center" Source="{Binding HeaderImage}"/>
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" >
-                    <StackPanel Panel.ZIndex="10" Opacity="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="8" Orientation="Horizontal">
-                        <Image Width="120" Height="120" Source="{Binding Thumbnail}"/>
-                        <TextBox MinWidth="120" VerticalAlignment="Center" x:Name="Lbl_Name" FontSize="24" FontWeight="Bold" Margin="8" Text="{Binding Title}"/>
-                    </StackPanel>
-                    <Grid Panel.ZIndex="-10" Background="Black" Opacity="0.48" />
-                </Grid>
+    <ScrollViewer VerticalAlignment="Stretch">
+        <Grid>
+            <Grid x:Name="Grd_Background" Visibility="Hidden" Background="Black" Opacity="0.52" Panel.ZIndex="10">
+                <Controls:ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="False" x:Name="Prog_SaveProgress" Foreground="{DynamicResource SecondaryAccentBrush}"/>
             </Grid>
-            <Grid Margin="8">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel>
-                            <Label Content="Price"/>
-                            <TextBox MinWidth="40" Margin="8" MaxLines="1" x:Name="Txt_Price" Text="{Binding Price}"/>
+            <StackPanel Panel.ZIndex="0" VerticalAlignment="Stretch">
+                <Grid Height="300">
+                    <Label HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8" x:Name="Lbl_PublisherName" Content="Publisher: "/>
+                    <Image HorizontalAlignment="Center" Stretch="UniformToFill" VerticalAlignment="Center" Source="{Binding HeaderImage}"/>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" >
+                        <StackPanel Panel.ZIndex="10" Opacity="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="8" Orientation="Horizontal">
+                            <Image Width="120" Height="120" Source="{Binding Thumbnail}"/>
+                            <TextBox MinWidth="120" VerticalAlignment="Center" x:Name="Lbl_Name" FontSize="24" FontWeight="Bold" Margin="8" Text="{Binding Title}"/>
                         </StackPanel>
-                        <CheckBox Content="Available" IsChecked="{Binding Available}"/>
+                        <Grid Panel.ZIndex="-10" Background="Black" Opacity="0.48" />
+                    </Grid>
+                </Grid>
+                <Grid Margin="8">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Margin="8" Content="Available" IsChecked="{Binding Available}"/>
+                            <StackPanel>
+                                <Label Content="Price"/>
+                                <TextBox MinWidth="40" Margin="8" MaxLines="1" x:Name="Txt_Price" Text="{Binding Price}"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <Label Content="Download URL"/>
+                                <TextBox MinWidth="160" Margin="8" MaxLines="1" x:Name="Txt_DownloadURL" Text="{Binding Directory}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Label Content="Description"/>
+                        <TextBox Margin="8" TextWrapping="Wrap" x:Name="Txt_Description" MinLines="1" Text="{Binding Description}"/>
+                        <Label Content="Categories"/>
+                        <ListView SelectedItem="{Binding CategoryID}" SelectionMode="Multiple" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" x:Name="Lst_CategoryAssignment" Margin="8" MinHeight="200" MaxHeight="350">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="{Binding Category1}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.Template>
+                                <ControlTemplate>
+                                    <ScrollViewer>
+                                        <ItemsPresenter HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"/>
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </ListView.Template>
+                        </ListView>
+                        <Button Click="Btn_SaveChanges_Click" x:Name="Btn_SaveChanges" HorizontalAlignment="Right" Margin="8" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Save Changes"/>
                     </StackPanel>
-                    <Label Content="Description"/>
-                    <TextBox Margin="8" TextWrapping="Wrap" x:Name="Txt_Description" MinLines="1" Text="{Binding Description}"/>
-                </StackPanel>
-            </Grid>
-        </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Grid>
     </ScrollViewer>
 </UserControl>

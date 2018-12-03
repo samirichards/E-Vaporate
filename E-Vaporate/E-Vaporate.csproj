@@ -102,9 +102,11 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Utilities.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CategoryAssignment.cs" />
     <Compile Include="Model\EVaporateModel.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\Publisher.cs" />
+    <Compile Include="Model\PublisherCode.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Views\AccountVerification.xaml.cs">
       <DependentUpon>AccountVerification.xaml</DependentUpon>

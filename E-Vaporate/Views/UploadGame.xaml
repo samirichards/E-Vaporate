@@ -42,10 +42,10 @@
             </DockPanel>
             <DockPanel LastChildFill="True" VerticalAlignment="Bottom" >
                 <Label Content="Category" VerticalAlignment="Top" Margin="8"/>
-                <ListView VerticalAlignment="Bottom" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" x:Name="Lst_CategoryAssignment" Margin="8" MinHeight="200" MaxHeight="350">
+                <ListView SelectionMode="Multiple" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" x:Name="Lst_CategoryAssignment" Margin="8" MinHeight="200" MaxHeight="350">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Background="{DynamicResource SecondaryAccentBrush}" Content="{Binding Category1}" x:Name="Chk_CategoryChecked"/>
+                            <Label HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="{Binding Category1}"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                     <ListView.Template>
