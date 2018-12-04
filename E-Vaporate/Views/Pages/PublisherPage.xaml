@@ -47,10 +47,8 @@
         <Button x:Name="Btn_AddNewGame" Click="Btn_AddNewGame_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="8" Width="48" Height="48" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
             <Image Source="{StaticResource Add}"/>
         </Button>
-
         <materialDesign:Card VerticalAlignment="Stretch" Padding="0"  Grid.Column="1">
             <UserControl x:Name="Frm_GamePubPage" Padding="0"/>
         </materialDesign:Card>
-
     </Grid>
 </Page>

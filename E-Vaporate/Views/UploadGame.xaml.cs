@@ -52,10 +52,14 @@ namespace E_Vaporate.Views
             };
             dialog.ShowDialog();
 
-            if (dialog.OpenFile() != null)
+            try
             {
-                game.HeaderImage = System.IO.File.ReadAllBytes(dialog.FileName);
+                if (dialog.OpenFile() != null)
+                {
+                    game.HeaderImage = System.IO.File.ReadAllBytes(dialog.FileName);
+                }
             }
+            catch (Exception) { };
             var image = new BitmapImage();
             using (var ms = new System.IO.MemoryStream(game.HeaderImage))
             {

@@ -45,7 +45,7 @@
                             </StackPanel>
                         </StackPanel>
                         <Label Content="Description"/>
-                        <TextBox Margin="8" TextWrapping="Wrap" x:Name="Txt_Description" MinLines="1" Text="{Binding Description}"/>
+                        <TextBox Margin="8" AcceptsReturn="True" TextWrapping="Wrap" x:Name="Txt_Description" MinLines="1" Text="{Binding Description}"/>
                         <Label Content="Categories"/>
                         <ListView SelectedItem="{Binding CategoryID}" SelectionMode="Multiple" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" x:Name="Lst_CategoryAssignment" Margin="8" MinHeight="200" MaxHeight="350">
                             <ListView.ItemTemplate>
