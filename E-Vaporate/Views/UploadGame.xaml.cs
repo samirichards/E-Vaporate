@@ -136,12 +136,12 @@ namespace E_Vaporate.Views
                         context.CategoryAssignments.Add(assignment);
                     }
                     context.SaveChanges();
-                    MessageBox.Show("That all went gucci");
+                    MessageBox.Show("Game uploaded successfully");
                 }
             }
-            catch (Exception)
+            catch (Exception b)
             {
-                MessageBox.Show("Nah fam");
+                MessageBox.Show("There was a problem uploading your game" + Environment.NewLine + b.Message);
             }
             Prog_UploadProg.IsActive = false;
             Close();

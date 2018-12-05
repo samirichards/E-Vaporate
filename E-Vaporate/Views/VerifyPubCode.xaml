@@ -34,8 +34,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
-            <Label Content="Please enter your Publisher code" HorizontalContentAlignment="Center"/>
-            <TextBox x:Name="Txt_PublisherCode" Grid.RowSpan="1" TextAlignment="Center" Height="28"/>
+            <TextBox  materialDesign:HintAssist.Hint="Publisher Code" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_PublisherCode" Grid.RowSpan="1" TextAlignment="Center" Height="36"/>
             <Button x:Name="Btn_EnterPublisherCode" Content="Enter" HorizontalAlignment="Center" Margin="4" Style="{DynamicResource MaterialDesignRaisedAccentButton}"/>
         </StackPanel>
     </Grid>

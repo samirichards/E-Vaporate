@@ -218,7 +218,7 @@ namespace E_Vaporate.Views
 
         private async void Btn_Login_Click(object sender, RoutedEventArgs e)
         {
-            Prog_ProgressRing.IsActive = true;
+            LoadingVisibility(true);
             (sender as Button).IsEnabled = false;
             await Login();
         }
@@ -230,13 +230,14 @@ namespace E_Vaporate.Views
             {
                 Main main = new Main(temp);
                 main.Show();
-                Prog_ProgressRing.IsActive = true;
+                LoadingVisibility(true);
                 Hide();
             }
             else
             {
                 MessageBox.Show("User not found");
-                Prog_ProgressRing.IsActive = false;
+                Btn_Login.IsEnabled = true;
+                LoadingVisibility(false);
             }
         }
 
@@ -244,6 +245,29 @@ namespace E_Vaporate.Views
         {
             base.OnClosed(e);
             Application.Current.Shutdown();
+        }
+
+        private void LoadingVisibility(bool visability)
+        {
+            if (visability)
+            {
+                Grd_ProgBackdrop.Visibility = Visibility.Visible;
+                Grd_ProgBackdrop.Opacity = 0;
+                DoubleAnimation anim = new DoubleAnimation
+                {
+                    From = 0,
+                    To = 0.52,
+                    EasingFunction = new QuadraticEase(),
+                    Duration = TimeSpan.FromSeconds(0.3)
+                };
+                Grd_ProgBackdrop.BeginAnimation(OpacityProperty, anim);
+                Prog_ProgressRing.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Prog_ProgressRing.Visibility = Visibility.Visible;
+                Grd_ProgBackdrop.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

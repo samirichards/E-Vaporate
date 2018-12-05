@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:E_Vaporate"
         mc:Ignorable="d"
-        Title="E-Vaporate Login / Register" Height="450" Width="400"
+        Title="E-Vaporate Login / Register" Height="480" Width="400"
         BorderThickness="0"
         ResizeBorderThickness="4"
         ShowIconOnTitleBar="False"
@@ -31,6 +31,9 @@
                     <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
                 </materialDesign:TransitioningContent.OpeningEffects>
                 <Grid Width="390">
+                    <Grid Background="Black" Visibility="Hidden" x:Name="Grd_ProgBackdrop" Panel.ZIndex="10" Opacity="0.52">
+                        <ProgressBar x:Name="Prog_ProgressRing" Visibility="Hidden" Width="56" Height="56" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="0" Foreground="{DynamicResource SecondaryAccentBrush}" IsIndeterminate="True" />
+                    </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
@@ -45,15 +48,12 @@
                         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
                             <Grid Grid.Column="1" Grid.Row="0">
                                 <Image Source="{StaticResource Logo}" Height="96" Width="96" Margin="12"/>
-                                <Controls:ProgressRing IsActive="False" x:Name="Prog_ProgressRing" Width="112" Height="112" Foreground="{DynamicResource SecondaryAccentBrush}"/>
                             </Grid>
                             <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                                <Label Width="80" DockPanel.Dock="Left" Content="Username:" VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
-                                <TextBox x:Name="Txt_Username" Height="28" Margin="6"/>
+                                <TextBox materialDesign:HintAssist.Hint="Username" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_Username" Height="36" Margin="6"/>
                             </DockPanel>
                             <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" LastChildFill="True">
-                                <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="Password:"/>
-                                <PasswordBox x:Name="Txt_Password" Height="28" Margin="6"/>
+                                <PasswordBox materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" x:Name="Txt_Password" Height="36" Margin="6"/>
                             </DockPanel>
                             <CheckBox x:Name="Chk_Rememebr" HorizontalAlignment="Center" Content="Remember Me?" Margin="6" VerticalAlignment="Center" Background="{DynamicResource SecondaryAccentBrush}"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -84,7 +84,7 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"/>
-                                <RowDefinition Height="5*"/>
+                                <RowDefinition Height="7*"/>
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Column="1" Grid.Row="0" Margin="0,8,8,8">
@@ -92,28 +92,22 @@
                             </StackPanel>
                             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
                                 <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" LastChildFill="True">
-                                    <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="First Name:"/>
-                                    <TextBox x:Name="Txt_FirstName" Height="28" Margin="4"/>
+                                    <TextBox  materialDesign:HintAssist.Hint="First Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_FirstName" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                                    <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="Last Name:"/>
-                                    <TextBox x:Name="Txt_LastName" Height="28" Margin="4"/>
+                                    <TextBox  materialDesign:HintAssist.Hint="Last Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_LastName" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                                    <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="Username:"/>
-                                    <TextBox x:Name="Txt_RegUsername" Height="28" Margin="4"/>
+                                    <TextBox  materialDesign:HintAssist.Hint="Username" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_RegUsername" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                                    <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="Password:"/>
-                                    <PasswordBox x:Name="Txt_RegPassword" Height="28" Margin="4"/>
+                                    <PasswordBox  materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" x:Name="Txt_RegPassword" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                                    <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="Confirm:"/>
-                                    <PasswordBox x:Name="Txt_RegPasswordConf" Height="28" Margin="4"/>
+                                    <PasswordBox  materialDesign:HintAssist.Hint="Password Again" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" x:Name="Txt_RegPasswordConf" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                                    <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="Email:"/>
-                                    <TextBox x:Name="Txt_Email" Height="28" Margin="4"/>
+                                    <TextBox  materialDesign:HintAssist.Hint="Email Address" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_Email" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <StackPanel HorizontalAlignment="Right" Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -138,20 +132,16 @@
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
                                 <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" LastChildFill="True">
-                                    <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="Postcode"/>
-                                    <TextBox x:Name="Txt_Postcode" Height="28" Margin="4"/>
+                                    <TextBox  materialDesign:HintAssist.Hint="Postcode" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_Postcode" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" LastChildFill="True">
-                                    <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="Address Line 1"/>
-                                    <TextBox x:Name="Txt_AddrLine1" Height="28" Margin="4"/>
+                                    <TextBox  materialDesign:HintAssist.Hint="Address Line 1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_AddrLine1" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" LastChildFill="True">
-                                    <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="Address Line 2"/>
-                                    <TextBox x:Name="Txt_AddrLine2" Height="28" Margin="4"/>
+                                    <TextBox  materialDesign:HintAssist.Hint="Address Line 2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_AddrLine2" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" LastChildFill="True">
-                                    <Label Width="80" DockPanel.Dock="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="Address Line 3"/>
-                                    <TextBox x:Name="Txt_AddrLine3" Height="28" Margin="4"/>
+                                    <TextBox materialDesign:HintAssist.Hint="Address Line 3" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_AddrLine3" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" LastChildFill="True">
                                     <CheckBox Content="I am a Publisher" x:Name="Chk_Publisher" HorizontalAlignment="Center" Margin="6" VerticalAlignment="Center" Background="{DynamicResource SecondaryAccentBrush}" Checked="Chk_Publisher_Checked"/>
