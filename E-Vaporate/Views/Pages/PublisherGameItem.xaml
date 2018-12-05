@@ -24,6 +24,7 @@
                     <Label HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8" x:Name="Lbl_PublisherName" Content="Publisher: "/>
                     <Image HorizontalAlignment="Center" Stretch="UniformToFill" VerticalAlignment="Center" Source="{Binding HeaderImage}"/>
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" >
+                        <!--Binding here is essentially just fill in the gaps with the value of that variable within the current data context-->
                         <StackPanel Panel.ZIndex="10" Opacity="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="8" Orientation="Horizontal">
                             <Image Width="120" Height="120" Source="{Binding Thumbnail}"/>
                             <TextBox MinWidth="120" VerticalAlignment="Center" x:Name="Lbl_Name" FontSize="24" FontWeight="Bold" Margin="8" Text="{Binding Title}"/>
@@ -34,10 +35,12 @@
                 <Grid Margin="8">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Margin="8" Content="Available" IsChecked="{Binding Available}"/>
+                            <!--Availability is a bit value and so can be used here to pre-check the checkbox-->
+                            <CheckBox Margin="8" Content="Available" Background="#4CAF50" IsChecked="{Binding Available}"/>
                             <StackPanel>
                                 <Label Content="Price"/>
-                                <TextBox MinWidth="40" Margin="8" MaxLines="1" x:Name="Txt_Price" Text="{Binding Price}"/>
+                                <!--There is regex validation on this textbox to ensure only numbers are entered-->
+                                <TextBox MinWidth="40" Margin="8" MaxLines="1" PreviewTextInput="NumberValidationTextBox" x:Name="Txt_Price" Text="{Binding Price}"/>
                             </StackPanel>
                             <StackPanel>
                                 <Label Content="Download URL"/>
@@ -47,9 +50,11 @@
                         <Label Content="Description"/>
                         <TextBox Margin="8" AcceptsReturn="True" TextWrapping="Wrap" x:Name="Txt_Description" MinLines="1" Text="{Binding Description}"/>
                         <Label Content="Categories"/>
+                        <!--Show all the categories already associated with this game by selecting those items in the list-->
                         <ListView SelectedItem="{Binding CategoryID}" SelectionMode="Multiple" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" x:Name="Lst_CategoryAssignment" Margin="8" MinHeight="200" MaxHeight="350">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
+                                    <!--This is what shows the name of each category as a list item-->
                                     <Label HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="{Binding Category1}"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -61,10 +66,15 @@
                                 </ControlTemplate>
                             </ListView.Template>
                         </ListView>
+                        <!--Calls the event which gets all of the data in the form and saves it all to the database-->
                         <Button Click="Btn_SaveChanges_Click" x:Name="Btn_SaveChanges" HorizontalAlignment="Right" Margin="8" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Save Changes"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>
         </Grid>
     </ScrollViewer>
+    <UserControl.InputBindings>
+        <KeyBinding Key="s"
+                    Modifiers="Ctrl"/>
+    </UserControl.InputBindings>
 </UserControl>
