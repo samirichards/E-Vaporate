@@ -96,6 +96,9 @@ namespace E_Vaporate.Views
             
             switch (ValidateReg())
             {
+                case 3:
+                    MessageBox.Show("Invalid Email format");
+                    return;
                 case 2:
                     MessageBox.Show("Passwords dont match");
                     return;
@@ -179,7 +182,7 @@ namespace E_Vaporate.Views
             {
                 return 1;
             }
-            else return 0;
+            return IsEmailValid(Txt_Email.Text);
         }
 
         private void LockRegInputs()
@@ -219,13 +222,13 @@ namespace E_Vaporate.Views
         private async void Btn_Login_Click(object sender, RoutedEventArgs e)
         {
             LoadingVisibility(true);
-            (sender as Button).IsEnabled = false;
-            await Login();
+            ((Button)sender).IsEnabled = false;
+            Login();
         }
 
-        private async Task Login()
+        private async void Login()
         {
-            User temp = await Classes.Utilities.Test(Txt_Username.Text, Txt_Password.Password);
+            User temp = Classes.Utilities.GetUser(Txt_Username.Text, Txt_Password.Password);
             if (temp != null)
             {
                 Main main = new Main(temp);
@@ -267,6 +270,20 @@ namespace E_Vaporate.Views
             {
                 Prog_ProgressRing.Visibility = Visibility.Visible;
                 Grd_ProgBackdrop.Visibility = Visibility.Hidden;
+            }
+        }
+
+        public int IsEmailValid(string emailaddress)
+        {
+            try
+            {
+                System.Net.Mail.MailAddress m = new System.Net.Mail.MailAddress(emailaddress);
+
+                return 1;
+            }
+            catch (FormatException)
+            {
+                return 0;
             }
         }
     }

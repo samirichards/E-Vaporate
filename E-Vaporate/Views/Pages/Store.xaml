@@ -22,24 +22,33 @@
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
                 <Grid>
                     <ListView x:Name="Lst_DevList">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Focusable" Value="false"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel>
-                                    <Label Content="{Binding DeveloperName}"/>
-                                    <StackPanel Orientation="Horizontal">
-                                        <ListView x:Name="Lst_GameList" ItemsSource="{Binding DevelopersGames}">
+                                <Grid>
+                                    <StackPanel>
+                                        <Label Content="{Binding DevName}"/>
+                                        <ListView ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" x:Name="Lst_GameList" ItemsSource="{Binding Games}">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <StackPanel Orientation="Vertical">
-                                                        <Image x:Name="Img_Thumbnail" HorizontalAlignment="Center" Margin="4" Source="{Binding Thumbnail}"/>
-                                                        <Label Content="{Binding Title}" HorizontalAlignment="Left" Margin="4"/>
+                                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                        <Image Width="100" Height="100" x:Name="Img_Thumbnail" HorizontalAlignment="Center" Margin="4" Source="{Binding Thumbnail}"/>
+                                                        <Label Content="{Binding GameTitle}" HorizontalAlignment="Left" Margin="4"/>
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
+                                            <ListView.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ListView.ItemsPanel>
                                         </ListView>
                                     </StackPanel>
-                                </StackPanel>
-
+                                </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

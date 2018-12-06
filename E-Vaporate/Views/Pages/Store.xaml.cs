@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using E_Vaporate.Model;
 
 namespace E_Vaporate.Views.Pages
 {
@@ -20,17 +21,46 @@ namespace E_Vaporate.Views.Pages
     /// </summary>
     public partial class Store : Page
     {
-        public Store()
+        public Store(User loggedInUser)
         {
             InitializeComponent();
-            List<List<Model.Game>> PublisherGames = new List<List<Model.Game>>();
-            using (var context = new Model.EVaporateModel())
+            List<PublisherTitle> publisherTitles = new List<PublisherTitle>();
+            using (var context = new EVaporateModel())
             {
-                foreach (var Publisher in context.Publishers)
+                foreach (var publisher in context.Publishers)
                 {
-                    //finish here
+                    PublisherTitle titles = new PublisherTitle
+                    {
+                        DevName = context.Publishers.Single(p => p.PublisherID == publisher.PublisherID).DeveloperName
+                    };
+                    foreach (var item in context.Games.Where(u => u.Publisher == publisher.PublisherID))
+                    {
+                        PublisherGame game = new PublisherGame
+                        {
+                            GameID = item.GameID,
+                            GameTitle = item.Title,
+                            Thumbnail = item.Thumbnail
+                        };
+                        titles.Games.Add(game);
+                    }
+                    publisherTitles.Add(titles);
                 }
             }
+            Lst_DevList.ItemsSource = publisherTitles;
+            Lst_DevList.DataContext = publisherTitles;
         }
     }
+
+    public class PublisherTitle
+    {
+        public string DevName { get; set; }
+        public List<PublisherGame> Games { get; set; } = new List<PublisherGame>();
+    }
+    public class PublisherGame
+    {
+        public int GameID { get; set; }
+        public string GameTitle { get; set; }
+        public byte[] Thumbnail { get; set; }
+    }
+
 }

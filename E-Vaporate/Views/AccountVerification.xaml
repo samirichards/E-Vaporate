@@ -107,7 +107,7 @@
                                     <PasswordBox  materialDesign:HintAssist.Hint="Password Again" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" x:Name="Txt_RegPasswordConf" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                                    <TextBox  materialDesign:HintAssist.Hint="Email Address" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_Email" Height="36" Margin="4"/>
+                                    <TextBox materialDesign:HintAssist.Hint="Email Address" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="Txt_Email" Height="36" Margin="4"/>
                                 </DockPanel>
                                 <StackPanel HorizontalAlignment="Right" Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

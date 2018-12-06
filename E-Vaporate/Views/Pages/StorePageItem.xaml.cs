@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using E_Vaporate.Model;
 
 namespace E_Vaporate.Views.Pages
 {
@@ -20,7 +21,7 @@ namespace E_Vaporate.Views.Pages
     /// </summary>
     public partial class StorePageItem : UserControl
     {
-        public StorePageItem()
+        public StorePageItem(Game inputGame)
         {
             InitializeComponent();
         }
