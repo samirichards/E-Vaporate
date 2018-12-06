@@ -36,6 +36,8 @@ namespace E_Vaporate.Model
 
         public double Price { get; set; }
 
+        public DateTime? TimeAdded { get; set; }
+
         public bool Available { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

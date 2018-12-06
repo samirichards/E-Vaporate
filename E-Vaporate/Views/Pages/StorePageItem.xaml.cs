@@ -16,21 +16,13 @@ using System.Windows.Shapes;
 namespace E_Vaporate.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for Store.xaml
+    /// Interaction logic for StorePageItem.xaml
     /// </summary>
-    public partial class Store : Page
+    public partial class StorePageItem : UserControl
     {
-        public Store()
+        public StorePageItem()
         {
             InitializeComponent();
-            List<List<Model.Game>> PublisherGames = new List<List<Model.Game>>();
-            using (var context = new Model.EVaporateModel())
-            {
-                foreach (var Publisher in context.Publishers)
-                {
-                    //finish here
-                }
-            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿<Page x:Class="E_Vaporate.Views.Pages.Store"
+      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,10 +7,48 @@
       xmlns:local="clr-namespace:E_Vaporate.Views.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Store">
+      Title="Store"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}">
 
     <Grid>
-        <Label Content="Test" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <materialDesign:Transitioner SelectedIndex="0" x:Name="Tran_StoreTransitioner">
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
+                <Grid>
+                    <ListView x:Name="Lst_DevList">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Label Content="{Binding DeveloperName}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ListView x:Name="Lst_GameList" ItemsSource="{Binding DevelopersGames}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <Image x:Name="Img_Thumbnail" HorizontalAlignment="Center" Margin="4" Source="{Binding Thumbnail}"/>
+                                                        <Label Content="{Binding Title}" HorizontalAlignment="Left" Margin="4"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </materialDesign:TransitionerSlide>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
+                <UserControl x:Name="Frm_GameDisplay"/>
+            </materialDesign:TransitionerSlide>
+        </materialDesign:Transitioner>
 
     </Grid>
 </Page>

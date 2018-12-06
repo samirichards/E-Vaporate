@@ -119,6 +119,7 @@ namespace E_Vaporate.Views
                 game.Price = double.Parse(Txt_GamePrice.Text);
                 game.Title = Txt_GameName.Text;
                 game.Publisher = LoggedInUser.UserID;
+                game.TimeAdded = DateTime.Now;
             }
             Prog_UploadProg.IsActive = true;
             try

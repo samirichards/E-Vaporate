@@ -132,6 +132,9 @@
     <Compile Include="Views\Pages\Store.xaml.cs">
       <DependentUpon>Store.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\StorePageItem.xaml.cs">
+      <DependentUpon>StorePageItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UploadGame.xaml.cs">
       <DependentUpon>UploadGame.xaml</DependentUpon>
     </Compile>
@@ -171,6 +174,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Store.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\StorePageItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
