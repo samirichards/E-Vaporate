@@ -20,24 +20,20 @@
     <Grid>
         <materialDesign:Transitioner SelectedIndex="0" x:Name="Tran_StoreTransitioner">
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
-                <Grid>
-                    <ListView x:Name="Lst_DevList">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="Focusable" Value="false"/>
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                        <ListView.ItemTemplate>
+                <StackPanel>
+                    <Button Content="Refresh" x:Name="Btn_RefreshStore" Click="Btn_RefreshStore_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8"/>
+                    <ItemsControl x:Name="Lst_DevList">
+                        <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <StackPanel>
-                                        <Label Content="{Binding DevName}"/>
-                                        <ListView ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" x:Name="Lst_GameList" ItemsSource="{Binding Games}">
+                                        <Label Content="{Binding DevName}" Margin="8" FontSize="24" FontWeight="Bold"/>
+                                        <ListView PreviewMouseDoubleClick="Lst_GameList_PreviewMouseDoubleClick" Margin="8" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" x:Name="Lst_GameList" ItemsSource="{Binding Games}">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <Image Width="100" Height="100" x:Name="Img_Thumbnail" HorizontalAlignment="Center" Margin="4" Source="{Binding Thumbnail}"/>
-                                                        <Label Content="{Binding GameTitle}" HorizontalAlignment="Left" Margin="4"/>
+                                                        <Label Content="{Binding Title}" HorizontalAlignment="Center" Margin="4"/>
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
@@ -50,12 +46,15 @@
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
             </materialDesign:TransitionerSlide>
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
-                <UserControl x:Name="Frm_GameDisplay"/>
+                <StackPanel>
+                    <Button x:Name="Btn_Close" Click="Btn_Close_Click" Content="Close"/>
+                    <UserControl x:Name="Frm_GameDisplay"/>
+                </StackPanel>
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>
 

@@ -73,7 +73,7 @@ namespace E_Vaporate.Classes
             }
         }
 
-        public static async Task<Model.User> Test(string username, string password)
+        public static async Task<Model.User> GetUserAsync(string username, string password)
         {
             return await Task.Run(() =>
              {

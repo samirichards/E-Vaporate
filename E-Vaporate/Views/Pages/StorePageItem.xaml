@@ -15,6 +15,10 @@
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <Label Content="Test"/>
+        <StackPanel>
+            <Label Content="Goteem"/>
+            <Label Content="{Binding Title}"/>
+            <TextBlock Text="{Binding Description}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

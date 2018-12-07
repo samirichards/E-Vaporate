@@ -54,18 +54,25 @@ namespace E_Vaporate.Views
 
             LstView_MainNav.SelectedIndex = 0;
         }
-
+        /*
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
             Application.Current.Shutdown();
         }
+        */
 
         private void LstView_MainNav_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             NavMenuButton menuButton = (NavMenuButton)LstView_MainNav.SelectedItem;
             Frm_ContentArea.Navigate(menuButton.LinkedPage);
             Lbl_ToolbarTitle.Content = menuButton.ButtonText;
+        }
+
+        private void Btn_Logout_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Windows.OfType<AccountVerification>().Single().Show();
+            Close();
         }
     }
 

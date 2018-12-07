@@ -24,6 +24,11 @@ namespace E_Vaporate.Views.Pages
         public Store(User loggedInUser)
         {
             InitializeComponent();
+            RefreshStore();
+        }
+
+        public async void RefreshStore()
+        {
             List<PublisherTitle> publisherTitles = new List<PublisherTitle>();
             using (var context = new EVaporateModel())
             {
@@ -33,15 +38,9 @@ namespace E_Vaporate.Views.Pages
                     {
                         DevName = context.Publishers.Single(p => p.PublisherID == publisher.PublisherID).DeveloperName
                     };
-                    foreach (var item in context.Games.Where(u => u.Publisher == publisher.PublisherID))
+                    foreach (var item in context.Games.Where(u => u.Publisher == publisher.PublisherID && u.Available == true))
                     {
-                        PublisherGame game = new PublisherGame
-                        {
-                            GameID = item.GameID,
-                            GameTitle = item.Title,
-                            Thumbnail = item.Thumbnail
-                        };
-                        titles.Games.Add(game);
+                        titles.Games.Add(item);
                     }
                     publisherTitles.Add(titles);
                 }
@@ -49,18 +48,34 @@ namespace E_Vaporate.Views.Pages
             Lst_DevList.ItemsSource = publisherTitles;
             Lst_DevList.DataContext = publisherTitles;
         }
+
+        private void Btn_RefreshStore_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshStore();
+        }
+
+        private void Btn_Close_Click(object sender, RoutedEventArgs e)
+        {
+            ((StorePageItem)Frm_GameDisplay.Content).Dispose();
+            Frm_GameDisplay.Content = null;
+            Tran_StoreTransitioner.SelectedIndex = 0;
+        }
+
+        private void Lst_GameList_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (Frm_GameDisplay.Content != null)
+            {
+                ((StorePageItem)Frm_GameDisplay.Content).Dispose();
+                Frm_GameDisplay.Content = null;
+            }
+            Frm_GameDisplay.Content = new StorePageItem(((Game)(((ListView)sender).SelectedItem)));
+            Tran_StoreTransitioner.SelectedIndex = 1;
+        }
     }
 
     public class PublisherTitle
     {
         public string DevName { get; set; }
-        public List<PublisherGame> Games { get; set; } = new List<PublisherGame>();
+        public List<Game> Games { get; set; } = new List<Game>();
     }
-    public class PublisherGame
-    {
-        public int GameID { get; set; }
-        public string GameTitle { get; set; }
-        public byte[] Thumbnail { get; set; }
-    }
-
 }

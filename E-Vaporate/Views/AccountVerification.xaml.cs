@@ -219,7 +219,7 @@ namespace E_Vaporate.Views
             Chk_Publisher.IsEnabled = true;
         }
 
-        private async void Btn_Login_Click(object sender, RoutedEventArgs e)
+        private void Btn_Login_Click(object sender, RoutedEventArgs e)
         {
             LoadingVisibility(true);
             ((Button)sender).IsEnabled = false;
@@ -228,13 +228,14 @@ namespace E_Vaporate.Views
 
         private async void Login()
         {
-            User temp = Classes.Utilities.GetUser(Txt_Username.Text, Txt_Password.Password);
+            User temp = await Classes.Utilities.GetUserAsync(Txt_Username.Text, Txt_Password.Password);
             if (temp != null)
             {
                 Main main = new Main(temp);
                 main.Show();
-                LoadingVisibility(true);
+                LoadingVisibility(false);
                 Hide();
+                Btn_Login.IsEnabled = true;
             }
             else
             {

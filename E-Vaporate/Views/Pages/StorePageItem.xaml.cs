@@ -19,11 +19,17 @@ namespace E_Vaporate.Views.Pages
     /// <summary>
     /// Interaction logic for StorePageItem.xaml
     /// </summary>
-    public partial class StorePageItem : UserControl
+    public partial class StorePageItem : UserControl, IDisposable
     {
         public StorePageItem(Game inputGame)
         {
             InitializeComponent();
+            this.DataContext = inputGame;
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
     }
 }
