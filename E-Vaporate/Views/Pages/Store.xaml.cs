@@ -24,10 +24,10 @@ namespace E_Vaporate.Views.Pages
         public Store(User loggedInUser)
         {
             InitializeComponent();
-            RefreshStore();
+            Refresh();
         }
 
-        public async void RefreshStore()
+        public void GetStore()
         {
             List<PublisherTitle> publisherTitles = new List<PublisherTitle>();
             using (var context = new EVaporateModel())
@@ -45,13 +45,17 @@ namespace E_Vaporate.Views.Pages
                     publisherTitles.Add(titles);
                 }
             }
-            Lst_DevList.ItemsSource = publisherTitles;
-            Lst_DevList.DataContext = publisherTitles;
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                Lst_DevList.ItemsSource = publisherTitles;
+                Lst_DevList.DataContext = publisherTitles;
+                Prog_ProgressRing.Visibility = Visibility.Hidden;
+            }));
         }
 
         private void Btn_RefreshStore_Click(object sender, RoutedEventArgs e)
         {
-            RefreshStore();
+            Refresh();
         }
 
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
@@ -70,6 +74,15 @@ namespace E_Vaporate.Views.Pages
             }
             Frm_GameDisplay.Content = new StorePageItem(((Game)(((ListView)sender).SelectedItem)));
             Tran_StoreTransitioner.SelectedIndex = 1;
+        }
+
+        private Task Refresh()
+        {
+            Prog_ProgressRing.Visibility = Visibility.Visible;
+            return Task.Run(() =>
+            {
+                GetStore();
+            });
         }
     }
 

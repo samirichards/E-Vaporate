@@ -234,7 +234,7 @@ namespace E_Vaporate.Views
                 Main main = new Main(temp);
                 main.Show();
                 LoadingVisibility(false);
-                Hide();
+                Close();
                 Btn_Login.IsEnabled = true;
             }
             else
@@ -243,12 +243,6 @@ namespace E_Vaporate.Views
                 Btn_Login.IsEnabled = true;
                 LoadingVisibility(false);
             }
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            base.OnClosed(e);
-            Application.Current.Shutdown();
         }
 
         private void LoadingVisibility(bool visability)

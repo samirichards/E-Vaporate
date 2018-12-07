@@ -16,9 +16,10 @@
              FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <StackPanel>
-            <Label Content="Goteem"/>
             <Label Content="{Binding Title}"/>
             <TextBlock Text="{Binding Description}"/>
+            <Image Source="{Binding Thumbnail}"/>
+            <Image Source="{Binding HeaderImage}"/>
         </StackPanel>
     </Grid>
 </UserControl>

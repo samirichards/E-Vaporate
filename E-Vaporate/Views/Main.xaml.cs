@@ -71,7 +71,8 @@ namespace E_Vaporate.Views
 
         private void Btn_Logout_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Windows.OfType<AccountVerification>().Single().Show();
+            AccountVerification verification = new AccountVerification();
+            verification.Show();
             Close();
         }
     }

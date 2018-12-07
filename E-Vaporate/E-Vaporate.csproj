@@ -36,7 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo_NhR_icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
@@ -231,9 +232,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Placeholder.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo_NhR_icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon.ico" />
