@@ -10,16 +10,19 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
+             xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
              TextElement.FontSize="13"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <StackPanel>
-            <Label Content="{Binding Title}"/>
-            <TextBlock Text="{Binding Description}"/>
-            <Image Source="{Binding Thumbnail}"/>
-            <Image Source="{Binding HeaderImage}"/>
-        </StackPanel>
+        <Image Source="{Binding HeaderImage}" Stretch="UniformToFill"/>
+            <ScrollViewer VerticalScrollBarVisibility="Visible"  x:Name="test">
+            <StackPanel>
+                <Label Content="{Binding Title}"/>
+                <TextBlock Text="{Binding Description}"/>
+                <Image Width="100" Height="800" Source="{Binding Thumbnail}"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -29,7 +29,7 @@
                                 <Grid>
                                     <StackPanel>
                                         <Label Content="{Binding DevName}" Margin="8" FontSize="24" FontWeight="Bold"/>
-                                        <ListView PreviewMouseDoubleClick="Lst_GameList_PreviewMouseDoubleClick" Margin="8" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" x:Name="Lst_GameList" ItemsSource="{Binding Games}">
+                                        <ListView PreviewMouseDoubleClick="Lst_GameList_PreviewMouseDoubleClick" SelectionMode="Single" Margin="8" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" x:Name="Lst_GameList" ItemsSource="{Binding Games}">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
