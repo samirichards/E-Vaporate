@@ -45,7 +45,7 @@ namespace E_Vaporate.Views.Pages
                     publisherTitles.Add(titles);
                 }
             }
-            this.Dispatcher.Invoke((Action)(() =>
+            Dispatcher.Invoke((Action)(() =>
             {
                 Lst_DevList.ItemsSource = publisherTitles;
                 Lst_DevList.DataContext = publisherTitles;
@@ -60,9 +60,7 @@ namespace E_Vaporate.Views.Pages
 
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
         {
-            ((StorePageItem)Frm_GameDisplay.Content).Dispose();
-            Frm_GameDisplay.Content = null;
-            Tran_StoreTransitioner.SelectedIndex = 0;
+            CloseStoreItem();
         }
 
         private void Lst_GameList_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -83,6 +81,13 @@ namespace E_Vaporate.Views.Pages
             {
                 GetStore();
             });
+        }
+
+        public void CloseStoreItem()
+        {
+            Tran_StoreTransitioner.SelectedIndex = 0;
+            ((StorePageItem)Frm_GameDisplay.Content).Dispose();
+            Frm_GameDisplay.Content = null;
         }
     }
 

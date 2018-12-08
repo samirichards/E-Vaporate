@@ -20,16 +20,17 @@
     <Grid>
         <materialDesign:Transitioner SelectedIndex="0" x:Name="Tran_StoreTransitioner">
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
-                <StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
                     <Button Content="Refresh" x:Name="Btn_RefreshStore" Click="Btn_RefreshStore_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8"/>
                     <ProgressBar x:Name="Prog_ProgressRing" Visibility="Hidden" Width="24" Height="24" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="0" Foreground="{DynamicResource SecondaryAccentBrush}" IsIndeterminate="True" />
-                    <ItemsControl x:Name="Lst_DevList">
+                    <ItemsControl x:Name="Lst_DevList" ScrollViewer.CanContentScroll="False">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <StackPanel>
                                         <Label Content="{Binding DevName}" Margin="8" FontSize="24" FontWeight="Bold"/>
-                                        <ListView PreviewMouseDoubleClick="Lst_GameList_PreviewMouseDoubleClick" SelectionMode="Single" Margin="8" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" x:Name="Lst_GameList" ItemsSource="{Binding Games}">
+                                        <ListView PreviewMouseDoubleClick="Lst_GameList_PreviewMouseDoubleClick" IsTabStop="True" SelectionMode="Single" Margin="8" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Auto" x:Name="Lst_GameList" ItemsSource="{Binding Games}">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -49,13 +50,16 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
             </materialDesign:TransitionerSlide>
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
-                <StackPanel>
-                    <Button x:Name="Btn_Close" Click="Btn_Close_Click" Content="Close"/>
-                    <UserControl x:Name="Frm_GameDisplay"/>
-                </StackPanel>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Button HorizontalAlignment="Right" Margin="12" VerticalAlignment="Top" x:Name="Btn_Close" Click="Btn_Close_Click" Content="Close"/>
+                        <UserControl x:Name="Frm_GameDisplay"/>
+                    </Grid>
+                </ScrollViewer>
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>
 

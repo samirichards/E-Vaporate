@@ -10,19 +10,49 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
-             xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
              TextElement.FontSize="13"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <Image Source="{Binding HeaderImage}" Stretch="UniformToFill"/>
-            <ScrollViewer VerticalScrollBarVisibility="Visible"  x:Name="test">
-            <StackPanel>
-                <Label Content="{Binding Title}"/>
-                <TextBlock Text="{Binding Description}"/>
-                <Image Width="100" Height="800" Source="{Binding Thumbnail}"/>
-            </StackPanel>
-        </ScrollViewer>
+        <StackPanel>
+            <materialDesign:Card Background="Transparent" materialDesign:ShadowAssist.ShadowDepth="Depth4">
+                <Grid Height="320">
+                    <Image Source="{Binding HeaderImage}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                        <Grid Background="Black" Opacity="0.52"/>
+                        <StackPanel Panel.ZIndex="10" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12">
+                            <Image Width="100" Height="100" Margin="8" VerticalAlignment="Center" Source="{Binding Thumbnail}"/>
+                            <Label Content="{Binding Title}" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Margin="8"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="16*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <ProgressBar x:Name="Prog_ProgressRing" Visibility="Hidden" Width="24" Height="24" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="0" Foreground="{DynamicResource SecondaryAccentBrush}" IsIndeterminate="True" />
+                <materialDesign:Card Grid.Column="1" Margin="0,12,0,12" VerticalAlignment="Stretch" materialDesign:ShadowAssist.ShadowDepth="Depth1" UniformCornerRadius="8" Padding="8">
+                    <StackPanel>
+                        <ItemsControl x:Name="Ite_CategoryDisplay">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <materialDesign:Chip Margin="4" Content="{Binding Category1}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                        <TextBlock Margin="8" FontWeight="Medium" TextWrapping="Wrap" Text="{Binding Description}"/>
+                    </StackPanel>
+                </materialDesign:Card>
+            </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>
