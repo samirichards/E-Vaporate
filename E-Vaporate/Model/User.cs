@@ -12,7 +12,7 @@ namespace E_Vaporate.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            Games = new HashSet<Game>();
+            GameOwnerships = new HashSet<GameOwnership>();
         }
 
         public int UserID { get; set; }
@@ -52,9 +52,9 @@ namespace E_Vaporate.Model
 
         public byte[] UserIcon { get; set; }
 
-        public virtual Publisher Publisher { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Game> Games { get; set; }
+        public virtual ICollection<GameOwnership> GameOwnerships { get; set; }
+
+        public virtual Publisher Publisher { get; set; }
     }
 }

@@ -21,9 +21,11 @@ namespace E_Vaporate.Views.Pages
     /// </summary>
     public partial class Store : Page
     {
+        public User CurrentUser { get; set; }
         public Store(User loggedInUser)
         {
             InitializeComponent();
+            CurrentUser = loggedInUser;
             Refresh();
         }
 
@@ -70,7 +72,7 @@ namespace E_Vaporate.Views.Pages
                 ((StorePageItem)Frm_GameDisplay.Content).Dispose();
                 Frm_GameDisplay.Content = null;
             }
-            Frm_GameDisplay.Content = new StorePageItem(((Game)(((ListView)sender).SelectedItem)));
+            Frm_GameDisplay.Content = new StorePageItem(((Game)((ListView)sender).SelectedItem), CurrentUser);
             Tran_StoreTransitioner.SelectedIndex = 1;
         }
 

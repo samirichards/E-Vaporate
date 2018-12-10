@@ -15,6 +15,7 @@ namespace E_Vaporate.Model
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<CategoryAssignment> CategoryAssignments { get; set; }
         public virtual DbSet<Game> Games { get; set; }
+        public virtual DbSet<GameOwnership> GameOwnerships { get; set; }
         public virtual DbSet<Publisher> Publishers { get; set; }
         public virtual DbSet<PublisherCode> PublisherCodes { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -32,13 +33,18 @@ namespace E_Vaporate.Model
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Game>()
-                .HasMany(e => e.Users)
-                .WithMany(e => e.Games)
-                .Map(m => m.ToTable("GameOwnership").MapLeftKey("GameID").MapRightKey("UserID"));
+                .HasMany(e => e.GameOwnerships)
+                .WithRequired(e => e.Game)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Publisher>()
                 .Property(e => e.DeveloperName)
                 .IsFixedLength();
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.GameOwnerships)
+                .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasOptional(e => e.Publisher)

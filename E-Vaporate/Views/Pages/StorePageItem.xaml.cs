@@ -22,11 +22,13 @@ namespace E_Vaporate.Views.Pages
     public partial class StorePageItem : UserControl, IDisposable
     {
         private Game CurrentGame { get; set; }
-        public StorePageItem(Game inputGame)
+        private User CurrentUser { get; set; }
+        public StorePageItem(Game inputGame, User user)
         {
             InitializeComponent();
             this.DataContext = inputGame;
             CurrentGame = inputGame;
+            CurrentUser = user;
             Populate();
         }
 
@@ -44,14 +46,47 @@ namespace E_Vaporate.Views.Pages
                 using (var context = new EVaporateModel())
                 {
                     categories = context.Categories.Where(c => c.CategoryAssignments.Where(g => g.GameID == CurrentGame.GameID).Select(b => b.CategoryID).Contains(c.CategoryID)).ToList();
+                    if (context.GameOwnerships.Where(u=> u.UserID == CurrentUser.UserID).Select(g=> g.GameID).Contains(CurrentGame.GameID))
+                    {
+                        Dispatcher.Invoke((() =>
+                        {
+                            Btn_BuyGame.Content = "Owned";
+                            Btn_BuyGame.IsEnabled = false;
+                        }));
+
+                    }
                 }
-                Dispatcher.Invoke((Action)(() =>
+                Dispatcher.Invoke((() =>
                 {
                     Ite_CategoryDisplay.ItemsSource = categories;
                     Ite_CategoryDisplay.DataContext = categories;
                     Prog_ProgressRing.Visibility = Visibility.Hidden;
                 }));
             });
+        }
+
+        private void Btn_BuyGame_Click(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Windows.OfType<GameTransaction>().Count() == 0)
+            {
+                if ((CurrentUser.AccountFunds - CurrentGame.Price) < 0)
+                {
+                    MessageBox.Show("Insufficient funds" + Environment.NewLine + "You can add more funds to your account under the account section");
+                }
+                else
+                {
+                    var transaction = new GameTransaction(CurrentGame, CurrentUser);
+
+                    if ((bool)transaction.ShowDialog())
+                    {
+                        Populate();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Yeah nah that didn't work out");
+                    }
+                }
+            }
         }
     }
 }

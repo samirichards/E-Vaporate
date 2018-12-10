@@ -55,10 +55,12 @@
             </materialDesign:TransitionerSlide>
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid>
-                        <Button HorizontalAlignment="Right" Margin="12" VerticalAlignment="Top" x:Name="Btn_Close" Click="Btn_Close_Click" Content="Close"/>
+                    <StackPanel>
+                        <Grid Background="{StaticResource PrimaryHueDarkBrush}">
+                            <Button HorizontalAlignment="Right" Margin="12" VerticalAlignment="Top" x:Name="Btn_Close" Click="Btn_Close_Click" Content="Close"/>
+                        </Grid>
                         <UserControl x:Name="Frm_GameDisplay"/>
-                    </Grid>
+                    </StackPanel>
                 </ScrollViewer>
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>

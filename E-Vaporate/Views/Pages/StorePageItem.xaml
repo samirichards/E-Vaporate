@@ -49,6 +49,13 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
+                        <Line Margin="0,12,0,12" X1="0" X2="1" Y1="0" Y2="0" Stretch="Uniform" Stroke="White" StrokeThickness="1"/>
+                        <StackPanel x:Name="Stk_AddToAccount" Orientation="Horizontal">
+                            <Button Margin="8" Background="#009624" BorderBrush="#009624" Content="Buy Game" Foreground="White" Click="Btn_BuyGame_Click" x:Name="Btn_BuyGame"/>
+                            <Label Margin="8,8,0,8" Content="{Binding Price}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            <Label Margin="0,8,8,8" Content="EP" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <Line Margin="0,12,0,12" X1="0" X2="1" Y1="0" Y2="0" Stretch="Uniform" Stroke="White" StrokeThickness="1"/>
                         <TextBlock Margin="8" FontWeight="Medium" TextWrapping="Wrap" Text="{Binding Description}"/>
                     </StackPanel>
                 </materialDesign:Card>

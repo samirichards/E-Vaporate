@@ -13,7 +13,7 @@ namespace E_Vaporate.Model
         public Game()
         {
             CategoryAssignments = new HashSet<CategoryAssignment>();
-            Users = new HashSet<User>();
+            GameOwnerships = new HashSet<GameOwnership>();
         }
 
         public int GameID { get; set; }
@@ -36,14 +36,14 @@ namespace E_Vaporate.Model
 
         public double Price { get; set; }
 
-        public DateTime? TimeAdded { get; set; }
-
         public bool Available { get; set; }
+
+        public DateTime? TimeAdded { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CategoryAssignment> CategoryAssignments { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<GameOwnership> GameOwnerships { get; set; }
     }
 }

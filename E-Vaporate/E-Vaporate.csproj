@@ -109,11 +109,15 @@
     <Compile Include="Model\CategoryAssignment.cs" />
     <Compile Include="Model\EVaporateModel.cs" />
     <Compile Include="Model\Game.cs" />
+    <Compile Include="Model\GameOwnership.cs" />
     <Compile Include="Model\Publisher.cs" />
     <Compile Include="Model\PublisherCode.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Views\AccountVerification.xaml.cs">
       <DependentUpon>AccountVerification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameTransaction.xaml.cs">
+      <DependentUpon>GameTransaction.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -153,6 +157,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\GameTransaction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
