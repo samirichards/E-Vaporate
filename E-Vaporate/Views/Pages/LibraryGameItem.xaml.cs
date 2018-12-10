@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace E_Vaporate.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for Library.xaml
+    /// Interaction logic for LibraryGameItem.xaml
     /// </summary>
-    public partial class Library : Page
+    public partial class LibraryGameItem : UserControl
     {
-        public Library()
+        public LibraryGameItem()
         {
             InitializeComponent();
-        }
-
-        private void Lst_LibGames_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

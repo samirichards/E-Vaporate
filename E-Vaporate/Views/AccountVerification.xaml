@@ -58,7 +58,7 @@
                             <CheckBox x:Name="Chk_Rememebr" HorizontalAlignment="Center" Content="Remember Me?" Margin="6" VerticalAlignment="Center" Background="{DynamicResource SecondaryAccentBrush}"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <TextBlock Text="No account yet?" Margin="8" VerticalAlignment="Center"/>
-                                <Button x:Name="Btn_SignUp" Content="Sign up here" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" Margin="8" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueLightBrush}" Style="{DynamicResource MaterialDesignFlatButton}"/>
+                                <Button materialDesign:RippleAssist.Feedback="{StaticResource SecondaryAccentBrush}" x:Name="Btn_SignUp" Content="Sign up here" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" Margin="8" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueLightBrush}" Style="{DynamicResource MaterialDesignFlatButton}"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft">
@@ -111,11 +111,11 @@
                                 </DockPanel>
                                 <StackPanel HorizontalAlignment="Right" Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button x:Name="Btn_BackToLogin" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}" Content="Back" Style="{DynamicResource MaterialDesignFlatButton}" Margin="6" VerticalAlignment="Center" Click="Btn_BackToLogin_Click"/>
+                                        <Button x:Name="Btn_BackToLogin" materialDesign:RippleAssist.Feedback="{StaticResource SecondaryAccentBrush}" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}" Content="Back" Style="{DynamicResource MaterialDesignFlatButton}" Margin="6" VerticalAlignment="Center" Click="Btn_BackToLogin_Click"/>
                                         <Button x:Name="Btn_Register" Content="Register" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="6" VerticalAlignment="Center" Click="Btn_Register_Click"/>
                                     </StackPanel>
                                 </StackPanel>
-                                <Button x:Name="Btn_ExpandReg" Content="More Options" HorizontalAlignment="Right" Click="Btn_ExpandReg_Click"/>
+                                <Button materialDesign:RippleAssist.Feedback="{StaticResource SecondaryAccentBrush}" x:Name="Btn_ExpandReg" Content="More Options" HorizontalAlignment="Right" Click="Btn_ExpandReg_Click"/>
                             </StackPanel>
                             <ProgressBar Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" BorderThickness="0" Background="{StaticResource SecondaryAccentBrush}" x:Name="Prog_RegisterProgressBar" IsIndeterminate="True" Visibility="Hidden"/>
                         </Grid>

@@ -23,7 +23,7 @@
 
     <Grid>
         <DockPanel>
-            <Grid x:Name="Grd_Toolbar" Height="52" DockPanel.Dock="Top" VerticalAlignment="Top" Background="{StaticResource PrimaryHueDarkBrush}" materialDesign:ShadowAssist.ShadowEdges="Bottom">
+            <Grid x:Name="Grd_Toolbar" materialDesign:ShadowAssist.ShadowDepth="Depth2" materialDesign:ShadowAssist.ShadowEdges="Bottom" materialDesign:ShadowAssist.Darken="True" Height="52" DockPanel.Dock="Top" VerticalAlignment="Top" Background="{StaticResource PrimaryHueDarkBrush}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="20*"/>
@@ -43,14 +43,14 @@
                         </Image.Clip>
                     </Image>
                 </materialDesign:Ripple>
-                <Button Content="Logout(Temp)" x:Name="Btn_Logout" Click="Btn_Logout_Click" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"/>
+                <Button materialDesign:RippleAssist.Feedback="{DynamicResource SecondaryAccentBrush}" Content="Logout(Temp)" x:Name="Btn_Logout" Click="Btn_Logout_Click" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"/>
             </Grid>
             <Grid x:Name="Grd_ContentArea">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ScrollViewer materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="Right" VerticalScrollBarVisibility="Auto">
                     <StackPanel Background="{StaticResource PrimaryHueDarkBrush}">
                         <ListView x:Name="LstView_MainNav" HorizontalContentAlignment="Stretch" Background="{StaticResource PrimaryHueDarkBrush}" SelectionChanged="LstView_MainNav_SelectionChanged">
                             <ListView.ItemTemplate>

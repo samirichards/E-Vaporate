@@ -22,7 +22,7 @@
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                    <Button Content="Refresh" x:Name="Btn_RefreshStore" Click="Btn_RefreshStore_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8"/>
+                        <Button materialDesign:RippleAssist.Feedback="{StaticResource SecondaryAccentBrush}" Content="Refresh" x:Name="Btn_RefreshStore" Click="Btn_RefreshStore_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8"/>
                     <ProgressBar x:Name="Prog_ProgressRing" Visibility="Hidden" Width="24" Height="24" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="0" Foreground="{DynamicResource SecondaryAccentBrush}" IsIndeterminate="True" />
                     <ItemsControl x:Name="Lst_DevList" ScrollViewer.CanContentScroll="False">
                         <ItemsControl.ItemTemplate>
@@ -56,7 +56,7 @@
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <Grid Background="{StaticResource PrimaryHueDarkBrush}">
+                        <Grid Background="{StaticResource PrimaryHueMidBrush}" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="Bottom">
                             <Button HorizontalAlignment="Right" Margin="12" VerticalAlignment="Top" x:Name="Btn_Close" Click="Btn_Close_Click" Content="Close"/>
                         </Grid>
                         <UserControl x:Name="Frm_GameDisplay"/>

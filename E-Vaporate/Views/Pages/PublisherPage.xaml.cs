@@ -22,8 +22,8 @@ namespace E_Vaporate.Views.Pages
     /// </summary>
     public partial class PublisherPage : Page
     {
-        public Model.User LoggedInUser { get; set; }
-        public PublisherPage(Model.User user)
+        public User LoggedInUser { get; set; }
+        public PublisherPage(User user)
         {
             InitializeComponent();
             LoggedInUser = user;
