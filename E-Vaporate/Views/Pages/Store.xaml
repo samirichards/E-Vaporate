@@ -22,8 +22,7 @@
             <materialDesign:TransitionerSlide x:Name="Sld_StoreDisplay">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <Button materialDesign:RippleAssist.Feedback="{StaticResource SecondaryAccentBrush}" Content="Refresh" x:Name="Btn_RefreshStore" Click="Btn_RefreshStore_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8"/>
-                    <ProgressBar x:Name="Prog_ProgressRing" Visibility="Hidden" Width="24" Height="24" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="0" Foreground="{DynamicResource SecondaryAccentBrush}" IsIndeterminate="True" />
+                        <ProgressBar x:Name="Prog_ProgressRing" Visibility="Hidden" Width="24" Height="24" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="0" Foreground="{DynamicResource SecondaryAccentBrush}" IsIndeterminate="True" />
                     <ItemsControl x:Name="Lst_DevList" ScrollViewer.CanContentScroll="False">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

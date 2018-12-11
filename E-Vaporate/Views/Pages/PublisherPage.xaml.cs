@@ -39,7 +39,7 @@ namespace E_Vaporate.Views.Pages
             }
         }
 
-        private void Refresh()
+        public void Refresh()
         {
             if (Frm_GamePubPage.Content != null)
             {

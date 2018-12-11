@@ -36,9 +36,6 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="Lbl_ToolbarTitle" Grid.Column="1" Grid.Row="1" Content="Test" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="24" FontWeight="DemiBold"/>
-                <Button Grid.Column="1" HorizontalAlignment="Right" Grid.Row="1" materialDesign:RippleAssist.Feedback="{StaticResource SecondaryAccentBrush}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" x:Name="Btn_Refresh" Click="Btn_Refresh_Click" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="Refresh"/>
-                </Button>
                 <materialDesign:Ripple materialDesign:RippleAssist.IsCentered="True" ClipToBounds="False" materialDesign:RippleAssist.Feedback="White" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center">
                     <Image Source="{StaticResource Logo}" x:Name="Img_UserIcon" Height="42" Width="42">
                         <Image.Clip>
@@ -46,7 +43,32 @@
                         </Image.Clip>
                     </Image>
                 </materialDesign:Ripple>
-                <Button materialDesign:RippleAssist.Feedback="{DynamicResource SecondaryAccentBrush}" Content="Logout(Temp)" x:Name="Btn_Logout" Click="Btn_Logout_Click" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"/>
+                <Button RenderTransformOrigin=".5,.5" Grid.Column="2" ToolTip="Refresh this page" HorizontalAlignment="Left" Grid.Row="1" materialDesign:RippleAssist.Feedback="{StaticResource SecondaryAccentBrush}" materialDesign:RippleAssist.ClipToBounds="False" materialDesign:RippleAssist.IsCentered="True" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" x:Name="Btn_Action" Click="Btn_Action_Click" VerticalAlignment="Center">
+                    <materialDesign:PackIcon x:Name="Ico_innerIcon" Foreground="White" MinWidth="20" MinHeight="20" Kind="Refresh"/>
+                    <Button.RenderTransform>
+                        <RotateTransform x:Name="MyAnimatedTransform" Angle="0" />
+                    </Button.RenderTransform>
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        Storyboard.TargetName="MyAnimatedTransform"
+                                        Storyboard.TargetProperty="(RotateTransform.Angle)"
+                                        From="0.0" To="720" Duration="0:0:2">
+                                        <DoubleAnimation.EasingFunction>
+                                            <QuadraticEase EasingMode="EaseOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                     
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+                <Button materialDesign:RippleAssist.Feedback="{DynamicResource SecondaryAccentBrush}" Background="Transparent" BorderBrush="Transparent" x:Name="Btn_Logout" Click="Btn_Logout_Click" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Logout" MinWidth="20" MinHeight="20" Foreground="White" />
+                </Button>
             </Grid>
             <Grid x:Name="Grd_ContentArea">
                 <Grid.ColumnDefinitions>

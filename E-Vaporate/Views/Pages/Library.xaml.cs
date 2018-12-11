@@ -29,7 +29,7 @@ namespace E_Vaporate.Views.Pages
             Refresh();
         }
 
-        private void Refresh()
+        public void Refresh()
         {
             Lst_LibGames.UnselectAll();
             if (Frm_GamePage.Content != null)

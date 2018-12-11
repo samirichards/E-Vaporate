@@ -55,11 +55,6 @@ namespace E_Vaporate.Views.Pages
             }));
         }
 
-        private void Btn_RefreshStore_Click(object sender, RoutedEventArgs e)
-        {
-            Refresh();
-        }
-
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
         {
             CloseStoreItem();
@@ -76,7 +71,7 @@ namespace E_Vaporate.Views.Pages
             Tran_StoreTransitioner.SelectedIndex = 1;
         }
 
-        private Task Refresh()
+        public Task Refresh()
         {
             Prog_ProgressRing.Visibility = Visibility.Visible;
             return Task.Run(() =>

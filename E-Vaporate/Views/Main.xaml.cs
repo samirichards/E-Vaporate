@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using E_Vaporate.Model;
+using System.Windows.Media.Animation;
 
 namespace E_Vaporate.Views
 {
@@ -76,9 +77,20 @@ namespace E_Vaporate.Views
             Close();
         }
 
-        private void Btn_Refresh_Click(object sender, RoutedEventArgs e)
+        private void Btn_Action_Click(object sender, RoutedEventArgs e)
         {
-
+            if (Frm_ContentArea.Content.GetType() == typeof(Pages.Library))
+            {
+                ((Pages.Library)Frm_ContentArea.Content).Refresh();
+            }
+            if (Frm_ContentArea.Content.GetType() == typeof(Pages.PublisherPage))
+            {
+                ((Pages.PublisherPage)Frm_ContentArea.Content).Refresh();
+            }
+            if (Frm_ContentArea.Content.GetType() == typeof(Pages.Store))
+            {
+                ((Pages.Store)Frm_ContentArea.Content).Refresh();
+            }
         }
     }
 
