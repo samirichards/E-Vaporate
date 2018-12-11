@@ -52,7 +52,7 @@ namespace E_Vaporate.Views
                     if (!context.GameOwnerships.Where(u=> u.UserID == CurrentUser.UserID).Select(g=> g.GameID).Contains(CurrentGame.GameID))
                     {
                         context.GameOwnerships.Add(ownership);
-                        context.SaveChangesAsync();
+                        context.SaveChanges();
                         MessageBox.Show("Purchase successful");
                         PurchaseSuccessful = true;
                         DialogResult = true;
@@ -71,7 +71,6 @@ namespace E_Vaporate.Views
                 MessageBox.Show("There was a problem with the transaction" + Environment.NewLine + f.Message);
                 DialogResult = false;
                 Close();
-                throw;
             }
         }
 

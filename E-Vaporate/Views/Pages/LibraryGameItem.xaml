@@ -33,30 +33,23 @@
                 </Grid>
                 <Grid Margin="8">
                     <StackPanel>
+                        <ItemsControl x:Name="Ite_CategoryDisplay">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <materialDesign:Chip Margin="4" Content="{Binding Category1}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="Btn_Download" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Download" Margin="8"/>
                         </StackPanel>
                         <Label Content="Description"/>
-                        <TextBox Margin="8" AcceptsReturn="True" TextWrapping="Wrap" x:Name="Txt_Description" MinLines="1" Text="{Binding Description}"/>
-                        <Label Content="Categories"/>
-                        <!--Show all the categories already associated with this game by selecting those items in the list-->
-                        <ListView SelectedItem="{Binding CategoryID}" SelectionMode="Multiple" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" x:Name="Lst_CategoryAssignment" Margin="8" MinHeight="200" MaxHeight="350">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <!--This is what shows the name of each category as a list item-->
-                                    <Label HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Content="{Binding Category1}"/>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                            <ListView.Template>
-                                <ControlTemplate>
-                                    <ScrollViewer>
-                                        <ItemsPresenter HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"/>
-                                    </ScrollViewer>
-                                </ControlTemplate>
-                            </ListView.Template>
-                        </ListView>
-                        <!--Calls the event which gets all of the data in the form and saves it all to the database-->
-                        <Button Click="Btn_SaveChanges_Click" x:Name="Btn_SaveChanges" HorizontalAlignment="Right" Margin="8" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Save Changes"/>
+                        <TextBlock Margin="8" TextWrapping="Wrap" x:Name="Txt_Description" Text="{Binding Description}"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>

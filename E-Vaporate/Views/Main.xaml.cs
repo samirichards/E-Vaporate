@@ -30,7 +30,7 @@ namespace E_Vaporate.Views
             List<NavMenuButton> MainNavList = new List<NavMenuButton>
             {
                 new NavMenuButton { ButtonText = "Store", LinkedPage = new Pages.Store(LoggedInUser) },
-                new NavMenuButton { ButtonText = "Library", LinkedPage = new Pages.Library() },
+                new NavMenuButton { ButtonText = "Library", LinkedPage = new Pages.Library(LoggedInUser) },
                 new NavMenuButton { ButtonText = "Account", LinkedPage = new Pages.Account() },
                 new NavMenuButton { ButtonText = "Settings", LinkedPage = new Pages.Settings() }
             };
@@ -46,7 +46,7 @@ namespace E_Vaporate.Views
             List<Page> pages = new List<Page>()
             {
                 new Pages.Store(LoggedInUser),
-                new Pages.Library(),
+                new Pages.Library(LoggedInUser),
                 new Pages.Account(),
                 new Pages.Settings(),
                 new Pages.PublisherPage(LoggedInUser)
