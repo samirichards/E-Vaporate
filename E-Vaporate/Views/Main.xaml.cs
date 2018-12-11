@@ -75,6 +75,11 @@ namespace E_Vaporate.Views
             verification.Show();
             Close();
         }
+
+        private void Btn_Refresh_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     public class NavMenuButton

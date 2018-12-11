@@ -88,8 +88,8 @@ namespace E_Vaporate.Views.Pages
         public void CloseStoreItem()
         {
             Tran_StoreTransitioner.SelectedIndex = 0;
-            ((StorePageItem)Frm_GameDisplay.Content).Dispose();
-            Frm_GameDisplay.Content = null;
+            //((StorePageItem)Frm_GameDisplay.Content).Dispose();
+            //Frm_GameDisplay.Content = null;
         }
     }
 

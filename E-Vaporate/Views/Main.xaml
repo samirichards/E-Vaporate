@@ -36,6 +36,9 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="Lbl_ToolbarTitle" Grid.Column="1" Grid.Row="1" Content="Test" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="24" FontWeight="DemiBold"/>
+                <Button Grid.Column="1" HorizontalAlignment="Right" Grid.Row="1" materialDesign:RippleAssist.Feedback="{StaticResource SecondaryAccentBrush}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" x:Name="Btn_Refresh" Click="Btn_Refresh_Click" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Refresh"/>
+                </Button>
                 <materialDesign:Ripple materialDesign:RippleAssist.IsCentered="True" ClipToBounds="False" materialDesign:RippleAssist.Feedback="White" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center">
                     <Image Source="{StaticResource Logo}" x:Name="Img_UserIcon" Height="42" Width="42">
                         <Image.Clip>

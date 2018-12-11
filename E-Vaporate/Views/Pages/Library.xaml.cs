@@ -31,6 +31,7 @@ namespace E_Vaporate.Views.Pages
 
         private void Refresh()
         {
+            Lst_LibGames.UnselectAll();
             if (Frm_GamePage.Content != null)
             {
                 ((LibraryGameItem)Frm_GamePage.Content).Dispose();
@@ -49,7 +50,7 @@ namespace E_Vaporate.Views.Pages
         {
             if (Frm_GamePage.Content != null)
             {
-                ((PublisherGameItem)Frm_GamePage.Content).Dispose();
+                ((LibraryGameItem)Frm_GamePage.Content).Dispose();
             }
             Frm_GamePage.Content = new LibraryGameItem((Game)Lst_LibGames.SelectedItem);
             GC.Collect(4);

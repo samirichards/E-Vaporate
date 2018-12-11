@@ -19,7 +19,7 @@
 
     <Grid>
         <materialDesign:Transitioner SelectedIndex="0" x:Name="Tran_StoreTransitioner">
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
+            <materialDesign:TransitionerSlide x:Name="Sld_StoreDisplay">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <Button materialDesign:RippleAssist.Feedback="{StaticResource SecondaryAccentBrush}" Content="Refresh" x:Name="Btn_RefreshStore" Click="Btn_RefreshStore_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8"/>
@@ -53,11 +53,13 @@
                     </StackPanel>
                 </ScrollViewer>
             </materialDesign:TransitionerSlide>
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}" x:Name="Sld_GameDisplay">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <Grid Background="{StaticResource PrimaryHueMidBrush}" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="Bottom">
-                            <Button HorizontalAlignment="Right" Margin="12" VerticalAlignment="Top" x:Name="Btn_Close" Click="Btn_Close_Click" Content="Close"/>
+                        <Grid Background="{StaticResource PrimaryHueDarkBrush}" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="Bottom">
+                            <Button materialDesign:RippleAssist.Feedback="Red" materialDesign:RippleAssist.ClipToBounds="False" materialDesign:RippleAssist.RippleSizeMultiplier="1.2" materialDesign:RippleAssist.IsCentered="True" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" HorizontalAlignment="Right" Margin="12" VerticalAlignment="Top" x:Name="Btn_Close" Click="Btn_Close_Click">
+                                <materialDesign:PackIcon Kind="Close" />
+                            </Button>
                         </Grid>
                         <UserControl x:Name="Frm_GameDisplay"/>
                     </StackPanel>

@@ -27,23 +27,36 @@ namespace E_Vaporate.Views.Pages
             InitializeComponent();
             CurrentGame = game;
             DataContext = CurrentGame;
-            Populate();
+            try
+            {
+                Populate();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("There was a problem displaying categories");
+            }
         }
 
         private Task Populate()
         {
             return Task.Run(() =>
             {
-                List<Category> categories = new List<Category>();
-                using (var context = new EVaporateModel())
+                try
                 {
-                    categories = context.CategoryAssignments.Where(g => g.Game.GameID == CurrentGame.GameID).Select(f => f.Category).ToList();
+                    List<Category> categories = new List<Category>();
+                    using (var context = new EVaporateModel())
+                    {
+                        context.Games.Attach(CurrentGame);
+                        categories = context.Categories.Where(c => c.CategoryAssignments.Select(g => g.GameID).Contains(CurrentGame.GameID)).ToList();
+                    }
+                    Dispatcher.Invoke((() =>
+                    {
+                        Ite_CategoryDisplay.ItemsSource = categories;
+                        Ite_CategoryDisplay.DataContext = categories;
+                    }));
                 }
-                Dispatcher.Invoke((() =>
-                {
-                    Ite_CategoryDisplay.ItemsSource = categories;
-                    Ite_CategoryDisplay.DataContext = categories;
-                }));
+                catch (Exception)
+                { }
             });
         }
 

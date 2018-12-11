@@ -14,7 +14,7 @@ namespace E_Vaporate.Model
         public int GameID { get; set; }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OwnershipID { get; set; }
 
         public virtual Game Game { get; set; }
