@@ -48,7 +48,6 @@
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="Btn_Download" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Download" Margin="8"/>
                         </StackPanel>
-                        <Label Content="Description"/>
                         <TextBlock Margin="8" TextWrapping="Wrap" x:Name="Txt_Description" Text="{Binding Description}"/>
                     </StackPanel>
                 </Grid>

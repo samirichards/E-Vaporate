@@ -24,7 +24,6 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <StackPanel>
-            <Button Content="Refresh" materialDesign:RippleAssist.Feedback="{StaticResource SecondaryAccentBrush}" Click="Button_Click"/>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="Lst_LibGames" Grid.Column="0" SelectionChanged="Lst_LibGames_SelectionChanged" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
                     <ListView.ItemTemplate>

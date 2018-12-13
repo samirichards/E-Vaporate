@@ -51,7 +51,7 @@ namespace E_Vaporate.Views.Pages
             {
                 Lst_DevList.ItemsSource = publisherTitles;
                 Lst_DevList.DataContext = publisherTitles;
-                Prog_ProgressRing.Visibility = Visibility.Hidden;
+                ((Main)Application.Current.MainWindow).ShowProgress(false);
             }));
         }
 
@@ -73,7 +73,7 @@ namespace E_Vaporate.Views.Pages
 
         public Task Refresh()
         {
-            Prog_ProgressRing.Visibility = Visibility.Visible;
+            ((Main)Application.Current.MainWindow).ShowProgress(true);
             return Task.Run(() =>
             {
                 GetStore();

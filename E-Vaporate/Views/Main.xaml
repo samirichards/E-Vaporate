@@ -44,7 +44,7 @@
                     </Image>
                 </materialDesign:Ripple>
                 <Button RenderTransformOrigin=".5,.5" Grid.Column="2" ToolTip="Refresh this page" HorizontalAlignment="Left" Grid.Row="1" materialDesign:RippleAssist.Feedback="{StaticResource SecondaryAccentBrush}" materialDesign:RippleAssist.ClipToBounds="False" materialDesign:RippleAssist.IsCentered="True" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" x:Name="Btn_Action" Click="Btn_Action_Click" VerticalAlignment="Center">
-                    <materialDesign:PackIcon x:Name="Ico_innerIcon" Foreground="White" MinWidth="20" MinHeight="20" Kind="Refresh"/>
+                    <materialDesign:PackIcon x:Name="Ico_innerIcon" Foreground="White" MinWidth="24" MinHeight="24" Kind="Refresh"/>
                     <Button.RenderTransform>
                         <RotateTransform x:Name="MyAnimatedTransform" Angle="0" />
                     </Button.RenderTransform>
@@ -66,8 +66,9 @@
                         </EventTrigger>
                     </Button.Triggers>
                 </Button>
+                <ProgressBar Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" x:Name="Prog_ProgressRing" Visibility="Visible" Width="24" Height="24" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="0" Foreground="{DynamicResource SecondaryAccentBrush}" IsIndeterminate="True" />
                 <Button materialDesign:RippleAssist.Feedback="{DynamicResource SecondaryAccentBrush}" Background="Transparent" BorderBrush="Transparent" x:Name="Btn_Logout" Click="Btn_Logout_Click" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center">
-                    <materialDesign:PackIcon Kind="Logout" MinWidth="20" MinHeight="20" Foreground="White" />
+                    <materialDesign:PackIcon Kind="Logout" MinWidth="24" MinHeight="24" Foreground="White" />
                 </Button>
             </Grid>
             <Grid x:Name="Grd_ContentArea">
@@ -98,7 +99,7 @@
                         </ListView>
                     </StackPanel>
                 </ScrollViewer>
-                <Frame NavigationUIVisibility="Hidden" Grid.Column="1" x:Name="Frm_ContentArea"/>
+                <Frame NavigationUIVisibility="Hidden" Navigated="Frm_ContentArea_Navigated" Grid.Column="1" x:Name="Frm_ContentArea"/>
             </Grid>
         </DockPanel>
     </Grid>

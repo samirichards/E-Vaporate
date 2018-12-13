@@ -22,8 +22,7 @@
             <materialDesign:TransitionerSlide x:Name="Sld_StoreDisplay">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <ProgressBar x:Name="Prog_ProgressRing" Visibility="Hidden" Width="24" Height="24" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="0" Foreground="{DynamicResource SecondaryAccentBrush}" IsIndeterminate="True" />
-                    <ItemsControl x:Name="Lst_DevList" ScrollViewer.CanContentScroll="False">
+                        <ItemsControl x:Name="Lst_DevList" ScrollViewer.CanContentScroll="False">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -56,8 +55,16 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <Grid Background="{StaticResource PrimaryHueDarkBrush}" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="Bottom">
-                            <Button materialDesign:RippleAssist.Feedback="Red" materialDesign:RippleAssist.ClipToBounds="False" materialDesign:RippleAssist.RippleSizeMultiplier="1.2" materialDesign:RippleAssist.IsCentered="True" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" HorizontalAlignment="Right" Margin="12" VerticalAlignment="Top" x:Name="Btn_Close" Click="Btn_Close_Click">
-                                <materialDesign:PackIcon Kind="Close" />
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="12*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="1" materialDesign:RippleAssist.Feedback="Red" materialDesign:RippleAssist.ClipToBounds="False" materialDesign:RippleAssist.RippleSizeMultiplier="1.2" materialDesign:RippleAssist.IsCentered="True" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" HorizontalAlignment="Right" Margin="12" VerticalAlignment="Top" x:Name="Btn_Close" Click="Btn_Close_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label VerticalAlignment="Center" Content="Close" Foreground="White"/>
+                                    <materialDesign:PackIcon VerticalAlignment="Center" Kind="Close" Foreground="White" />
+                                </StackPanel>
                             </Button>
                         </Grid>
                         <UserControl x:Name="Frm_GameDisplay"/>

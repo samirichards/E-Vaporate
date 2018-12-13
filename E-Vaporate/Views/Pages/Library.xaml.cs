@@ -55,10 +55,5 @@ namespace E_Vaporate.Views.Pages
             Frm_GamePage.Content = new LibraryGameItem((Game)Lst_LibGames.SelectedItem);
             GC.Collect(4);
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Refresh();
-        }
     }
 }

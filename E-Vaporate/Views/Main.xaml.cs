@@ -26,6 +26,7 @@ namespace E_Vaporate.Views
 
         public Main(User _user)
         {
+            Application.Current.MainWindow = this;
             LoggedInUser = _user;
             InitializeComponent();
             List<NavMenuButton> MainNavList = new List<NavMenuButton>
@@ -90,6 +91,32 @@ namespace E_Vaporate.Views
             if (Frm_ContentArea.Content.GetType() == typeof(Pages.Store))
             {
                 ((Pages.Store)Frm_ContentArea.Content).Refresh();
+            }
+        }
+
+        private void Frm_ContentArea_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            var temp = (Frame)sender;
+            if (temp.Content.GetType() == typeof(Pages.Store) || temp.Content.GetType() == typeof(Pages.Library) || temp.Content.GetType() == typeof(Pages.PublisherPage))
+            {
+                Btn_Action.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Btn_Action.Visibility = Visibility.Hidden;
+            }
+        }
+
+        public void ShowProgress(bool value)
+        {
+            switch (value)
+            {
+                case true:
+                    Prog_ProgressRing.Visibility = Visibility.Visible;
+                    break;
+                case false:
+                    Prog_ProgressRing.Visibility = Visibility.Hidden;
+                    break;
             }
         }
     }
