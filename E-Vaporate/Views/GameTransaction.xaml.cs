@@ -47,7 +47,8 @@ namespace E_Vaporate.Views
                     GameOwnership ownership = new GameOwnership
                     {
                         GameID = tempGame.GameID,
-                        UserID = tempUser.UserID
+                        UserID = tempUser.UserID,
+                        TransactionDate = DateTime.Now
                     };
                     if (!context.GameOwnerships.Where(u=> u.UserID == CurrentUser.UserID).Select(g=> g.GameID).Contains(CurrentGame.GameID))
                     {

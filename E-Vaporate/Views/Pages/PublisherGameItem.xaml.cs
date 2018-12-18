@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using E_Vaporate.Model;
+using OxyPlot;
+using OxyPlot.Wpf;
 
 namespace E_Vaporate.Views.Pages
 {
@@ -51,6 +53,7 @@ namespace E_Vaporate.Views.Pages
             }
             catch (Exception)
             { }
+            RefreshStats();
         }
 
         public void Dispose()
@@ -101,6 +104,30 @@ namespace E_Vaporate.Views.Pages
         {
             System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("[^0-9.]+$");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private async Task RefreshStats()
+        {
+            await Task.Run(() =>
+            {
+
+                List<DataPoint> temp = new List<DataPoint>();
+                
+
+                using (var context = new EVaporateModel())
+                {
+                    for (int i = 1; i < DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) + 1; i++)
+                    {
+                        temp.Add(new DataPoint(i, context.GameOwnerships.Where(t=> t.TransactionDate.Day == i && t.GameID == GameItem.GameID).Count()));
+                    }
+                }
+
+                Dispatcher.Invoke(() =>
+                {
+                    Grph_Line_Ownerships.ItemsSource = temp;
+                });
+            });
+            return;
         }
     }
 }

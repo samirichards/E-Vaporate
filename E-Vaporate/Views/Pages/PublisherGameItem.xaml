@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:E_Vaporate.Views.Pages"
+        xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d" 
-        d:DesignHeight="450" d:DesignWidth="800"
+        d:DesignHeight="900" d:DesignWidth="800"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -68,6 +69,12 @@
                         </ListView>
                         <!--Calls the event which gets all of the data in the form and saves it all to the database-->
                         <Button Click="Btn_SaveChanges_Click" x:Name="Btn_SaveChanges" HorizontalAlignment="Right" Margin="8" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Save Changes"/>
+                        <!--This doesn't work yet-->
+                        <oxy:Plot Margin="12" Title="Games sold this month">
+                            <oxy:Plot.Series>
+                                <oxy:LineSeries x:Name="Grph_Line_Ownerships"/>
+                            </oxy:Plot.Series>
+                        </oxy:Plot>
                     </StackPanel>
                 </Grid>
             </StackPanel>

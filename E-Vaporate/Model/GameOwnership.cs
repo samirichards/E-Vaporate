@@ -13,6 +13,8 @@ namespace E_Vaporate.Model
 
         public int GameID { get; set; }
 
+        public DateTime TransactionDate { get; set; }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OwnershipID { get; set; }
@@ -20,5 +22,6 @@ namespace E_Vaporate.Model
         public virtual Game Game { get; set; }
 
         public virtual User User { get; set; }
+
     }
 }
