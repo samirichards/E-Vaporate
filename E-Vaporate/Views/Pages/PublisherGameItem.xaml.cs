@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -106,13 +107,16 @@ namespace E_Vaporate.Views.Pages
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private async Task RefreshStats()
+        private Task RefreshStats()
         {
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
+                Dispatcher.Invoke(() =>
+                {
+                    ((Main)Application.Current.MainWindow).ShowProgress(true);
+                });
 
                 List<DataPoint> temp = new List<DataPoint>();
-                
 
                 using (var context = new EVaporateModel())
                 {
@@ -120,14 +124,16 @@ namespace E_Vaporate.Views.Pages
                     {
                         temp.Add(new DataPoint(i, context.GameOwnerships.Where(t=> t.TransactionDate.Day == i && t.GameID == GameItem.GameID).Count()));
                     }
+                    Dispatcher.Invoke(() => Lbl_TotalOwnerships.Content = "Total copies of " + GameItem.Title + " sold: " + context.GameOwnerships.Where(t => t.GameID == GameItem.GameID).Count());
                 }
-
                 Dispatcher.Invoke(() =>
                 {
-                    Grph_Line_Ownerships.ItemsSource = temp;
+                    Grph_Stats_LineSeries.Title = "Sales per day during the month of " + DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture);
+                    Grph_Stats_LineSeries.ItemsSource = temp;
+                    Grph_Stats_LineSeries.Color = (Color)ColorConverter.ConvertFromString(FindResource("SecondaryAccentBrush").ToString());
+                    ((Main)Application.Current.MainWindow).ShowProgress(false);
                 });
             });
-            return;
         }
     }
 }

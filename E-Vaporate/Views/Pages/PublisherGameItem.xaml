@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:E_Vaporate.Views.Pages"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d" 
-        d:DesignHeight="900" d:DesignWidth="800"
+        d:DesignHeight="1600" d:DesignWidth="800"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -70,11 +70,18 @@
                         <!--Calls the event which gets all of the data in the form and saves it all to the database-->
                         <Button Click="Btn_SaveChanges_Click" x:Name="Btn_SaveChanges" HorizontalAlignment="Right" Margin="8" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Save Changes"/>
                         <!--This doesn't work yet-->
-                        <oxy:Plot Margin="12" Title="Games sold this month">
-                            <oxy:Plot.Series>
-                                <oxy:LineSeries x:Name="Grph_Line_Ownerships"/>
-                            </oxy:Plot.Series>
-                        </oxy:Plot>
+                        <Label FontSize="24" x:Name="Lbl_TotalOwnerships" Content="Test"/>
+                        <Grid Height="600">
+                            <oxy:Plot x:Name="Grph_Stats" BorderBrush="Transparent">
+                                <oxy:Plot.Axes>
+                                    <oxy:LinearAxis AxisDistance="1" IsZoomEnabled="False" IsPanEnabled="False" Position="Left" Minimum="0" Title="Number of sales"/>
+                                    <oxy:LinearAxis AxisDistance="1" IsZoomEnabled="False" IsPanEnabled="False" Position="Bottom" Minimum="0" Maximum="31" Title="Day"/>
+                                </oxy:Plot.Axes>
+                                <oxy:Plot.Series>
+                                    <oxy:LineSeries x:Name="Grph_Stats_LineSeries"/>
+                                </oxy:Plot.Series>
+                            </oxy:Plot>
+                        </Grid>
                     </StackPanel>
                 </Grid>
             </StackPanel>
