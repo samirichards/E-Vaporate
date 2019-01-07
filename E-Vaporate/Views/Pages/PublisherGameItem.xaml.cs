@@ -109,8 +109,10 @@ namespace E_Vaporate.Views.Pages
 
         private Task RefreshStats()
         {
+            //Async refresh of the game stats
             return Task.Run(() =>
             {
+                //Set showprogress to true on the main thread
                 Dispatcher.Invoke(() =>
                 {
                     ((Main)Application.Current.MainWindow).ShowProgress(true);
@@ -118,14 +120,17 @@ namespace E_Vaporate.Views.Pages
 
                 List<DataPoint> temp = new List<DataPoint>();
 
+                //For each day in the current month add a new datapoint to the temp list
                 using (var context = new EVaporateModel())
                 {
                     for (int i = 1; i < DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) + 1; i++)
                     {
                         temp.Add(new DataPoint(i, context.GameOwnerships.Where(t=> t.TransactionDate.Day == i && t.GameID == GameItem.GameID).Count()));
                     }
+                    //Show the number of sales
                     Dispatcher.Invoke(() => Lbl_TotalOwnerships.Content = "Total copies of " + GameItem.Title + " sold: " + context.GameOwnerships.Where(t => t.GameID == GameItem.GameID).Count());
                 }
+                //Set datacontext to the datapoint list as well as show the current month
                 Dispatcher.Invoke(() =>
                 {
                     Grph_Stats_LineSeries.Title = "Sales per day during the month of " + DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture);

@@ -32,6 +32,7 @@ namespace E_Vaporate.Views.Pages
 
         private void Btn_AddNewGame_Click(object sender, RoutedEventArgs e)
         {
+            //Open the upload game window if there are no ither upload game windows already open
             if (!Application.Current.Windows.OfType<MahApps.Metro.Controls.MetroWindow>().Any(w=> w.GetType().Equals(typeof(UploadGame))))
             {
                 UploadGame upload = new UploadGame(LoggedInUser);

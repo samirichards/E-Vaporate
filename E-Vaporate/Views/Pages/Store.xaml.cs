@@ -31,9 +31,12 @@ namespace E_Vaporate.Views.Pages
 
         public void GetStore()
         {
+            //Temp list of custom class
             List<PublisherTitle> publisherTitles = new List<PublisherTitle>();
             using (var context = new EVaporateModel())
             {
+                //Just add every publisher with all of their games
+                //Adds publisher even if they have no games published
                 foreach (var publisher in context.Publishers)
                 {
                     PublisherTitle titles = new PublisherTitle
@@ -60,6 +63,7 @@ namespace E_Vaporate.Views.Pages
             CloseStoreItem();
         }
 
+        //When there is a double click on the list, show the selected game
         private void Lst_GameList_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (Frm_GameDisplay.Content != null)
@@ -73,6 +77,7 @@ namespace E_Vaporate.Views.Pages
 
         public Task Refresh()
         {
+            //Asynchronously run GetStore()
             ((Main)Application.Current.MainWindow).ShowProgress(true);
             return Task.Run(() =>
             {
@@ -90,6 +95,7 @@ namespace E_Vaporate.Views.Pages
 
     public class PublisherTitle
     {
+        //Class to show publisher name and list of games 
         public string DevName { get; set; }
         public List<Game> Games { get; set; } = new List<Game>();
     }

@@ -34,6 +34,7 @@ namespace E_Vaporate.Views.Pages
 
         public void Dispose()
         {
+            //Implementation of IDisposable
             GC.SuppressFinalize(this);
         }
 
@@ -45,7 +46,10 @@ namespace E_Vaporate.Views.Pages
                 List<Category> categories = new List<Category>();
                 using (var context = new EVaporateModel())
                 {
+                    //Get all categories for the current game
+                    //Done by selecting all categories where there is a record of this game and the category in category assignments
                     categories = context.Categories.Where(c => c.CategoryAssignments.Where(g => g.GameID == CurrentGame.GameID).Select(b => b.CategoryID).Contains(c.CategoryID)).ToList();
+                    //If gameownership contains this game and the current user
                     if (context.GameOwnerships.Where(u=> u.UserID == CurrentUser.UserID).Select(g=> g.GameID).Contains(CurrentGame.GameID))
                     {
                         Dispatcher.Invoke((() =>
@@ -56,6 +60,7 @@ namespace E_Vaporate.Views.Pages
 
                     }
                 }
+                //Setting the item source and datacontext to the categories for the current game
                 Dispatcher.Invoke((() =>
                 {
                     Ite_CategoryDisplay.ItemsSource = categories;
@@ -69,6 +74,7 @@ namespace E_Vaporate.Views.Pages
         {
             if (Application.Current.Windows.OfType<GameTransaction>().Count() == 0)
             {
+                //Show transaction dialog if the account has the correct funds
                 if ((CurrentUser.AccountFunds - CurrentGame.Price) < 0)
                 {
                     MessageBox.Show("Insufficient funds" + Environment.NewLine + "You can add more funds to your account under the account section");
@@ -80,10 +86,6 @@ namespace E_Vaporate.Views.Pages
                     if ((bool)transaction.ShowDialog())
                     {
                         Populate();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Yeah nah that didn't work out");
                     }
                 }
             }
