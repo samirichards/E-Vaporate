@@ -33,7 +33,7 @@ namespace E_Vaporate.Views
             {
                 new NavMenuButton { ButtonText = "Store", LinkedPage = new Pages.Store(LoggedInUser) },
                 new NavMenuButton { ButtonText = "Library", LinkedPage = new Pages.Library(LoggedInUser) },
-                new NavMenuButton { ButtonText = "Account", LinkedPage = new Pages.Account() },
+                new NavMenuButton { ButtonText = "Account", LinkedPage = new Pages.Account(LoggedInUser) },
                 new NavMenuButton { ButtonText = "Settings", LinkedPage = new Pages.Settings() }
             };
             using (var context = new EVaporateModel())
@@ -49,7 +49,7 @@ namespace E_Vaporate.Views
             {
                 new Pages.Store(LoggedInUser),
                 new Pages.Library(LoggedInUser),
-                new Pages.Account(),
+                new Pages.Account(LoggedInUser),
                 new Pages.Settings(),
                 new Pages.PublisherPage(LoggedInUser)
             };

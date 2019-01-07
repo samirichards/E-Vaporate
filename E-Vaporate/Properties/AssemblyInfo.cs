@@ -8,9 +8,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("E-Vaporate")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("The Beta client for the E-Vaporate game platform")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Samson Inc.")]
 [assembly: AssemblyProduct("E-Vaporate")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
